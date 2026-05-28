@@ -1,9 +1,8 @@
 {
   "metadata": {
-    "last_updated": "2026-05-28 15:07:00 CEST",
     "total_items": 5,
-    "source": "Warframe.Market V2 + Umbra mods manuels",
-    "note": "Filtre strict appliqué : Uniquement les mods et les arcanes"
+    "source": "Warframe.Market V2 + Umbra",
+    "note": "Filtre strict : Uniquement les mods et les arcanes"
   },
   "items": {
     "umbral_intensify": {
@@ -18,7 +17,7 @@
         "zh-hant": "影幕強化",
         "zh-hans": "影幕强化",
         "pt": "Umbral Intensify",
-        "es": "Intensification Umbral",
+        "es": "Intensificación Umbral",
         "pl": "Umbral Intensify",
         "cs": "Umbral Intensify",
         "uk": "Умбральне Посилення",
