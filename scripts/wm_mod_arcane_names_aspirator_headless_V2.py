@@ -41,10 +41,10 @@ def get_server_version():
     except:
         return None
 
-def fetch_item_details(slug: str) -> list:
+def fetch_item_details(slug: str) -> Any:
     """
-    Récupère les détails d'un item. 
-    CORRECTIF : L'API V2 renvoie une liste dans la clé 'items' [1].
+    Récupère les détails d'un item.
+    L'API Warframe Market V2 retourne le détail dans la clé 'data'.
     """
     global FIRST_API_CALL_LOGGED
     try:
@@ -58,11 +58,11 @@ def fetch_item_details(slug: str) -> list:
                 print(json.dumps(full_data, indent=2, ensure_ascii=False)[:500] + "...")
                 FIRST_API_CALL_LOGGED = True
             
-            # On extrait la liste 'items' (pluriel)
-            return full_data.get("data", {}).get("items", [])
+            # On extrait les données de l'item
+            return full_data.get("data")
     except Exception as e:
         print(f"⚠️ Erreur réseau sur {slug}: {e}")
-    return []
+    return None
 
 # ==============================================================================
 # LOGIQUE DE CONSTRUCTION
@@ -94,20 +94,19 @@ def build_database():
     
     # 3. Parcours de tous les items
     for index, item_short in enumerate(all_items):
-        slug = item_short.get("url_name")
+        slug = item_short.get("slug") or item_short.get("url_name")
 
         # Skip si déjà en base ou si c'est un item qu'on sait inutile
-        if slug in database or slug in blacklist:
+        if not slug or slug in database or slug in blacklist:
             continue
 
         # Requête de détail
-        details_list = fetch_item_details(slug)
+        item_details = fetch_item_details(slug)
         time.sleep(DELAY) # Pause pour le Rate Limit [2, 6]
 
-        if details_list:
-            # L'API v2 renvoie une liste dans 'items'
-            main_item = details_list[0] if isinstance(details_list, list) else details_list
-            tags = set(main_item.get("tags", []))
+        if item_details:
+            main_item = item_details if isinstance(item_details, dict) else (item_details[0] if item_details else None)
+            tags = set(main_item.get("tags", [])) if main_item else set()
 
             if tags.intersection(ALLOWED_TAGS):
                 # AJOUT CRUCIAL : On stocke l'item dans notre base
