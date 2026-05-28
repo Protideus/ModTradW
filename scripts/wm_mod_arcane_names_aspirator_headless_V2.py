@@ -252,5 +252,5 @@ if __name__ == "__main__":
     db = build_database()
     db = add_umbra_mods(db)
     
-    # Sauvegarde finale dans data/mods.json
-    save_json(db, output_dir / "mods.json")
+    # Sauvegarde finale dans data/mods_database.json
+save_json(db, output_dir / "mods_database.json")
