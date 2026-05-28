@@ -32,7 +32,21 @@ def fetch_all_items() -> list:
         response = requests.get(f"{BASE_URL}/items", headers=HEADERS)
         response.raise_for_status()
         data = response.json()
-        return data.get("payload", {}).get("items", [])
+        
+        # Sécurité V2 : On extrait le payload
+        payload = data.get("payload", {})
+        
+        # En V2, selon les versions, la clé peut être 'items' ou directement une liste.
+        # On teste les structures possibles de la V2 :
+        if "items" in payload:
+            return payload["items"]
+        elif isinstance(payload, list):
+            return payload
+            
+        # Si on arrive ici, on affiche la structure reçue pour comprendre le problème
+        print(f"⚠️ Structure V2 inconnue. Clés du payload : {list(payload.keys())}")
+        return []
+        
     except Exception as e:
         print(f"❌ Impossible de récupérer la liste des items : {e}")
         return []
