@@ -53,61 +53,70 @@ def fetch_item_details(url_name: str) -> Dict:
 
 
 def build_database() -> Dict[str, Any]:
+    """Boucle principale ajustée sur la structure réelle de l'API V2."""
     items_list = fetch_all_items()
+    print(f"✅ {len(items_list)} items trouvés dans la liste globale.")
+
     database = {}
+    processed = 0
     ignored_count = 0
-    kept_count = 0
 
     for item in items_list:
-        url_name = item.get("slug") or item.get("url_name")  # V2 utilise souvent "slug"
+        url_name = item.get("url_name")
         if not url_name:
             continue
 
-        # Filtrage précoce avec les tags de la liste globale
-        item_tags = set(item.get("tags", []))
-        if item_tags and not item_tags.intersection(ALLOWED_TAGS):
-            ignored_count += 1
-            continue
-
-        print(f"➡️ Extraction détails : {url_name}")
+        processed += 1
+        print(f"➡️ [{processed}/{len(items_list)}] Extraction : {url_name}")
+        
         details = fetch_item_details(url_name)
-
+        
         if not details:
             time.sleep(DELAY)
             continue
 
-        final_tags = details.get("tags", []) or item.get("tags", [])
-
-        if not set(final_tags).intersection(ALLOWED_TAGS):
+        # L'API V2 imbrique les données spécifiques dans l'objet 'i18n'
+        i18n_data = details.get("i18n", {})
+        
+        # On s'appuie sur la structure anglaise ('en') qui est la référence de l'API
+        en_data = i18n_data.get("en", {}) if isinstance(i18n_data, dict) else {}
+        
+        if not en_data:
             ignored_count += 1
             time.sleep(DELAY)
             continue
 
-        # Extraction i18n
-        i18n_data = details.get("i18n", {})
+        # Extraction des tags situés dans le bloc de langue 'en' (vu sur la console)
+        final_tags = en_data.get("tags", [])
+
+        # --- FILTRAGE STRICT PAR TAGS V2 ---
+        # On vérifie si l'item contient le tag "mod" ou "arcane" à l'emplacement exact
+        if not final_tags or not any(tag in ["mod", "arcane"] for tag in final_tags):
+            ignored_count += 1
+            time.sleep(DELAY)
+            continue
+
+        # Extraction multilingue des noms uniquement (pour garder le JSON léger)
         names = {}
-        description_en = ""
-
         for lang, lang_data in i18n_data.items():
-            if isinstance(lang_data, dict):
-                if "name" in lang_data:
-                    names[lang] = lang_data["name"]
-                if lang == "en" and "description" in lang_data:
-                    description_en = lang_data["description"]
+            if isinstance(lang_data, dict) and "name" in lang_data:
+                names[lang] = lang_data["name"]
 
+        # Structure finale ultra-optimisée pour ton site web
         database[url_name] = {
             "url_name": url_name,
             "names": names,
-            "description": description_en,
-            "wiki_link": details.get("wiki_link"),
-            "image_link": details.get("thumb") or item.get("i18n", {}).get("en", {}).get("thumb"),
+            "description": en_data.get("description", ""),
+            "wiki_link": en_data.get("wiki_link"),
+            "image_link": en_data.get("thumb"),
             "tags": final_tags
         }
 
-        kept_count += 1
+        # Respect du rythme de l'API
         time.sleep(DELAY)
 
-    print(f"\n⚡ Filtrage terminé : {ignored_count} items ignorés | {kept_count} mods/arcanes conservés.")
+    print(f"\n⚡ Filtrage terminé : {ignored_count} items non pertinents ont été ignorés.")
+    print(f"📦 Nombre de mods/arcanes valides conservés : {len(database)}")
     return database
 
 
