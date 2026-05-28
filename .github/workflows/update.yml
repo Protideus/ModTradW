@@ -1,0 +1,48 @@
+name: Mise à jour automatique des données Warframe
+
+on:
+  schedule:
+    # S'exécute tous les lundis à 3h00 du matin (Heure UTC)
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+    # Permet le déclenchement manuel en un clic
+
+jobs:
+  update-mods-database:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Récupérer le code du dépôt (Historique complet)
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Configurer Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Installer les dépendances
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Exécuter l'aspirateur de données
+      # Ton script est maintenant bien rangé dans le dossier /scripts
+      run: python scripts/wm_mod_arcane_names_aspirator_headless_V2.py
+
+    - name: Vérifier les changements et Commit/Push
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        git add data/mods_database.json
+        
+        # Détection stricte : Si 'git diff --staged' est vide, on ne fait rien.
+        # Le "[skip ci]" évite de relancer une boucle de build inutile.
+        if git diff --staged --quiet; then
+          echo "Aucun nouveau mod détecté. Fin du workflow."
+        else
+          git commit -m "Mise à jour automatique de la base de données [skip ci]"
+          git push origin main
+        fi
