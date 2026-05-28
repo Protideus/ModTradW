@@ -1,6 +1,8 @@
 {
-  "version": "unknown",
-  "last_update": "2026-05-28T20:40:00.373014",
+  "metadata": {
+    "last_update": "2026-05-28T21:34:39.470841",
+    "count": 5
+  },
   "items": {
     "umbral_intensify": {
       "url_name": "umbral_intensify",
