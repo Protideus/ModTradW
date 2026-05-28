@@ -29,22 +29,33 @@ def fetch_all_items() -> list:
     """Récupère la liste globale de tous les items référencés sur l'API V2."""
     print("📡 Récupération de la liste globale des items (API V2)...")
     try:
-        response = requests.get(f"{BASE_URL}/items", headers=HEADERS)
+        response = requests.get(f"{BASE_URL_V2}/items", headers=HEADERS)
         response.raise_for_status()
         data = response.json()
         
-        # Sécurité V2 : On extrait le payload
         payload = data.get("payload", {})
         
-        # En V2, selon les versions, la clé peut être 'items' ou directement une liste.
-        # On teste les structures possibles de la V2 :
+        # En V2, la liste globale est rangée sous une clé de langue par défaut (souvent 'en')
+        # avant de donner la liste complète des objets.
         if "items" in payload:
-            return payload["items"]
-        elif isinstance(payload, list):
-            return payload
-            
-        # Si on arrive ici, on affiche la structure reçue pour comprendre le problème
-        print(f"⚠️ Structure V2 inconnue. Clés du payload : {list(payload.keys())}")
+            items_data = payload["items"]
+            if isinstance(items_data, dict) and "en" in items_data:
+                return items_data["en"]
+            elif isinstance(items_data, list):
+                return items_data
+                
+        # Si la structure n'est pas celle attendue, on cherche la première liste disponible
+        for key, value in payload.items():
+            if isinstance(value, list):
+                return value
+            elif isinstance(value, dict) and "en" in value:
+                return value["en"]
+                
+        print(f"⚠️ Structure V2 inattendue. Clés : {list(payload.keys())}")
+        return []
+        
+    except Exception as e:
+        print(f"❌ Impossible de récupérer la liste des items : {e}")
         return []
         
     except Exception as e:
