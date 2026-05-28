@@ -105,8 +105,8 @@ def build_database():
         time.sleep(DELAY) # Pause pour le Rate Limit [2, 6]
 
         if details_list:
-            # On analyse le premier item de la liste renvoyée
-            main_item = details_list
+            # L'API v2 renvoie une liste dans 'items'
+            main_item = details_list[0] if isinstance(details_list, list) else details_list
             tags = set(main_item.get("tags", []))
 
             if tags.intersection(ALLOWED_TAGS):
