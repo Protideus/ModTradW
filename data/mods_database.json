@@ -1,9 +1,6 @@
 {
-  "metadata": {
-    "total_items": 5,
-    "source": "Warframe.Market API V2",
-    "note": "Mise à jour quotidienne rapide / Check-up trimestriel automatique"
-  },
+  "version": "unknown",
+  "last_update": "2026-05-28T20:40:00.373014",
   "items": {
     "umbral_intensify": {
       "url_name": "umbral_intensify",
