@@ -9,33 +9,35 @@ from typing import Dict, Any
 # ==============================================================================
 BASE_URL = "https://api.warframe.market/v2"
 
-# Le User-Agent simule un navigateur Chrome pour éviter les blocages de sécurité
 HEADERS = {
     "Accept": "application/json",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
-# Délai de sécurité en secondes (0.5s = ~2 requêtes par seconde, sous la limite de 3/s)
-DELAY = 0.5  
-ALLOWED_TAGS = {"mod", "arcane"}
+# 0.3s d'attente entre les requêtes pour respecter la limite de l'API (~3 requêtes/s)
+DELAY = 0.3  
+
+# Les vrais tags officiels de la V2
+ALLOWED_TAGS = {"mod", "arcane_enhancement"}
 
 # ==============================================================================
 # FONCTIONS DE RÉCUPÉRATION (API)
 # ==============================================================================
 
 def fetch_item_details(slug: str) -> Dict:
-    """Récupère la fiche détaillée d'un item spécifique sur la V2."""
+    """Récupère la fiche détaillée d'un item sur l'endpoint au singulier (/v2/item/{slug})."""
     for attempt in range(3):
         try:
-            response = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS)
+            # CORRECTION CRITIQUE : l'endpoint de détail est bien '/item/{slug}' au singulier
+            response = requests.get(f"{BASE_URL}/item/{slug}", headers=HEADERS)
             response.raise_for_status()
-            # En V2, l'objet détaillé de l'item est imbriqué dans data -> item
+            
+            # En V2, l'objet complet de l'item est imbriqué dans data -> item
             return response.json().get("data", {}).get("item", {})
         except Exception as e:
             if attempt == 2:
                 print(f"❌ Échec définitif sur {slug} après 3 tentatives. Erreur: {e}")
                 return {}
-            # Attente exponentielle en cas d'erreur de connexion temporaire
             wait_time = DELAY * (2 ** attempt)
             time.sleep(wait_time)
     return {}
@@ -45,14 +47,14 @@ def fetch_item_details(slug: str) -> Dict:
 # ==============================================================================
 
 def build_database() -> Dict[str, Any]:
-    """Boucle principale : Récupère le manifeste puis interroge chaque fiche détaillée."""
-    print("📡 Récupération du manifeste global (API V2)...")
+    """Boucle principale : Récupère le manifeste global puis extrait chaque mod/arcane."""
+    print("📡 Récupération du manifeste global (API V2 /items)...")
     try:
+        # L'endpoint de la liste globale reste bien '/items' au pluriel
         response = requests.get(f"{BASE_URL}/items", headers=HEADERS)
         response.raise_for_status()
         res_json = response.json()
         
-        # En V2, la liste globale des objets est stockée dans la clé 'data'
         items_list = res_json.get("data", [])
         print(f"✅ Manifeste récupéré : {len(items_list)} items trouvés au total.")
         
@@ -64,55 +66,54 @@ def build_database() -> Dict[str, Any]:
     processed = 0
     ignored_count = 0
 
-    # On parcourt chaque item du manifeste pour interroger sa fiche détaillée
     for item in items_list:
         slug = item.get("slug")
         if not slug:
             continue
 
         processed += 1
-        print(f"➡️ [{processed}/{len(items_list)}] Extraction de la fiche détaillée : {slug}")
         
-        # Requête individuelle obligatoire pour obtenir le modèle Item complet (V2)
+        # Log de suivi condensé pour GitHub Actions
+        if processed % 100 == 0 or processed == len(items_list):
+            print(f"➡️ Avancement : [{processed}/{len(items_list)}] fiches analysées...")
+        
         details = fetch_item_details(slug)
-        
         if not details:
             time.sleep(DELAY)
             continue
 
-        # Dans la fiche détaillée V2, les tags sont à la racine de l'objet
-        tags = details.get("tags", [])
+        # Récupération et normalisation des tags de la fiche détaillée
+        raw_tags = details.get("tags", [])
+        tags = [str(t).strip().lower() for t in raw_tags] if raw_tags else []
 
-        # --- FILTRAGE STRICT ---
-        # On ne garde l'objet que si c'est un mod ou une arcane
+        # --- FILTRAGE PAR TAG STRICT ---
         if not tags or not any(tag in ALLOWED_TAGS for tag in tags):
             ignored_count += 1
             time.sleep(DELAY)
             continue
 
-        # Extraction de la structure linguistique i18n depuis les détails
+        # Extraction de la structure linguistique i18n
         i18n_data = details.get("i18n", {})
         
-        # Reconstruction du dictionnaire des noms par langue
+        # Reconstruction de la table des noms multilingues
         names = {}
         for lang, lang_data in i18n_data.items():
             if isinstance(lang_data, dict) and "name" in lang_data:
                 names[lang] = lang_data["name"]
 
-        # Récupération des infos anglaises pour la description, l'image et le wiki
+        # Extraction des données en anglais pour les détails génériques
         en_data = i18n_data.get("en", {}) if isinstance(i18n_data, dict) else {}
 
-        # Construction du dictionnaire final optimisé pour ton site web
+        # Structuration de la ligne pour ta base de données finale
         database[slug] = {
             "url_name": slug,
             "names": names,
             "description": en_data.get("description", ""),
-            "wiki_link": en_data.get("wikiLink"),  # Structure V2 : 'wikiLink' avec un L majuscule
+            "wiki_link": en_data.get("wikiLink"),  # Structure V2 : wikiLink avec 'L' majuscule
             "image_link": en_data.get("thumb"),
-            "tags": tags
+            "tags": raw_tags
         }
 
-        # Pause de sécurité pour respecter la limite de débit de l'API
         time.sleep(DELAY)
 
     print(f"\n⚡ Filtrage terminé : {ignored_count} items non pertinents ont été ignorés.")
@@ -269,7 +270,7 @@ def save_json(database: Dict, output_path: Path):
     metadata = {
         "total_items": len(database),
         "source": "Warframe.Market API V2",
-        "note": "Extraction sélective (Uniquement les mods et les arcanes)"
+        "note": "Extraction par tag strict (mod & arcane_enhancement)"
     }
 
     final_db = {
@@ -288,13 +289,11 @@ def save_json(database: Dict, output_path: Path):
 # POINT D'ENTRÉE
 # ==============================================================================
 if __name__ == "__main__":
-    # Définition du chemin de sortie relatif vers le dossier data/
     output_dir = Path("data")
     output_dir.mkdir(exist_ok=True)
 
     db = build_database()
     
-    # Si le manifeste et les fiches ont été récupérés, on injecte Umbra et on enregistre
     if db:
         db = add_umbra_mods(db)
         save_json(db, output_dir / "mods_database.json")
