@@ -1,7 +1,6 @@
 import requests
 import json
 import time
-from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any
 
@@ -10,11 +9,13 @@ from typing import Dict, Any
 # ==============================================================================
 BASE_URL = "https://api.warframe.market/v2"
 
+# Le User-Agent simule un navigateur Chrome pour éviter les blocages de sécurité
 HEADERS = {
     "Accept": "application/json",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
+# Délai de sécurité en secondes (0.5s = ~2 requêtes par seconde, sous la limite de 3/s)
 DELAY = 0.5  
 ALLOWED_TAGS = {"mod", "arcane"}
 
@@ -22,48 +23,19 @@ ALLOWED_TAGS = {"mod", "arcane"}
 # FONCTIONS DE RÉCUPÉRATION (API)
 # ==============================================================================
 
-def fetch_all_items() -> list:
-    """Récupère la liste globale de tous les items référencés sur l'API V2."""
-    print("📡 Récupération de la liste globale des items (API V2)...")
-    try:
-        response = requests.get(f"{BASE_URL}/items", headers=HEADERS)
-        response.raise_for_status()
-        data = response.json()
-        
-        payload = data.get("payload", {})
-        
-        if "items" in payload:
-            items_data = payload["items"]
-            if isinstance(items_data, dict) and "en" in items_data:
-                return items_data["en"]
-            elif isinstance(items_data, list):
-                return items_data
-                
-        for key, value in payload.items():
-            if isinstance(value, list):
-                return value
-            elif isinstance(value, dict) and "en" in value:
-                return value["en"]
-                
-        print(f"⚠️ Structure V2 inattendue. Clés : {list(payload.keys())}")
-        return []
-        
-    except Exception as e:
-        print(f"❌ Impossible de récupérer la liste des items : {e}")
-        return []
-
-
-def fetch_item_details(url_name: str) -> Dict:
-    """Récupère la fiche détaillée d'un item en V2."""
+def fetch_item_details(slug: str) -> Dict:
+    """Récupère la fiche détaillée d'un item spécifique sur la V2."""
     for attempt in range(3):
         try:
-            response = requests.get(f"{BASE_URL}/items/{url_name}", headers=HEADERS)
+            response = requests.get(f"{BASE_URL}/items/{slug}", headers=HEADERS)
             response.raise_for_status()
-            return response.json().get("payload", {}).get("item", {})
+            # En V2, l'objet détaillé de l'item est imbriqué dans data -> item
+            return response.json().get("data", {}).get("item", {})
         except Exception as e:
             if attempt == 2:
-                print(f"❌ Échec définitif sur {url_name} après 3 tentatives. Erreur: {e}")
+                print(f"❌ Échec définitif sur {slug} après 3 tentatives. Erreur: {e}")
                 return {}
+            # Attente exponentielle en cas d'erreur de connexion temporaire
             wait_time = DELAY * (2 ** attempt)
             time.sleep(wait_time)
     return {}
@@ -73,60 +45,74 @@ def fetch_item_details(url_name: str) -> Dict:
 # ==============================================================================
 
 def build_database() -> Dict[str, Any]:
-    """Boucle principale ajustée sur la structure réelle de l'API V2."""
-    items_list = fetch_all_items()
-    print(f"✅ {len(items_list)} items trouvés dans la liste globale.")
+    """Boucle principale : Récupère le manifeste puis interroge chaque fiche détaillée."""
+    print("📡 Récupération du manifeste global (API V2)...")
+    try:
+        response = requests.get(f"{BASE_URL}/items", headers=HEADERS)
+        response.raise_for_status()
+        res_json = response.json()
+        
+        # En V2, la liste globale des objets est stockée dans la clé 'data'
+        items_list = res_json.get("data", [])
+        print(f"✅ Manifeste récupéré : {len(items_list)} items trouvés au total.")
+        
+    except Exception as e:
+        print(f"❌ Impossible de récupérer le manifeste global : {e}")
+        return {}
 
     database = {}
     processed = 0
     ignored_count = 0
 
+    # On parcourt chaque item du manifeste pour interroger sa fiche détaillée
     for item in items_list:
-        url_name = item.get("url_name")
-        if not url_name:
+        slug = item.get("slug")
+        if not slug:
             continue
 
         processed += 1
-        print(f"➡️ [{processed}/{len(items_list)}] Extraction : {url_name}")
+        print(f"➡️ [{processed}/{len(items_list)}] Extraction de la fiche détaillée : {slug}")
         
-        details = fetch_item_details(url_name)
+        # Requête individuelle obligatoire pour obtenir le modèle Item complet (V2)
+        details = fetch_item_details(slug)
         
         if not details:
             time.sleep(DELAY)
             continue
 
+        # Dans la fiche détaillée V2, les tags sont à la racine de l'objet
+        tags = details.get("tags", [])
+
+        # --- FILTRAGE STRICT ---
+        # On ne garde l'objet que si c'est un mod ou une arcane
+        if not tags or not any(tag in ALLOWED_TAGS for tag in tags):
+            ignored_count += 1
+            time.sleep(DELAY)
+            continue
+
+        # Extraction de la structure linguistique i18n depuis les détails
         i18n_data = details.get("i18n", {})
-        en_data = i18n_data.get("en", {}) if isinstance(i18n_data, dict) else {}
         
-        if not en_data:
-            ignored_count += 1
-            time.sleep(DELAY)
-            continue
-
-        final_tags = en_data.get("tags", [])
-
-        # Filtrage strict par les tags trouvés dans le bloc 'en'
-        if not final_tags or not any(tag in ALLOWED_TAGS for tag in final_tags):
-            ignored_count += 1
-            time.sleep(DELAY)
-            continue
-
-        # Extraction multilingue des noms
+        # Reconstruction du dictionnaire des noms par langue
         names = {}
         for lang, lang_data in i18n_data.items():
             if isinstance(lang_data, dict) and "name" in lang_data:
                 names[lang] = lang_data["name"]
 
-        # Structure finale ultra-optimisée
-        database[url_name] = {
-            "url_name": url_name,
+        # Récupération des infos anglaises pour la description, l'image et le wiki
+        en_data = i18n_data.get("en", {}) if isinstance(i18n_data, dict) else {}
+
+        # Construction du dictionnaire final optimisé pour ton site web
+        database[slug] = {
+            "url_name": slug,
             "names": names,
             "description": en_data.get("description", ""),
-            "wiki_link": en_data.get("wiki_link"),
+            "wiki_link": en_data.get("wikiLink"),  # Structure V2 : 'wikiLink' avec un L majuscule
             "image_link": en_data.get("thumb"),
-            "tags": final_tags
+            "tags": tags
         }
 
+        # Pause de sécurité pour respecter la limite de débit de l'API
         time.sleep(DELAY)
 
     print(f"\n⚡ Filtrage terminé : {ignored_count} items non pertinents ont été ignorés.")
@@ -279,11 +265,11 @@ def add_umbra_mods(database: Dict) -> Dict:
 
 
 def save_json(database: Dict, output_path: Path):
-    """Sauvegarde la base de données au format JSON compact (UTF-8)."""
+    """Sauvegarde la base de données au format JSON structuré propre (UTF-8)."""
     metadata = {
         "total_items": len(database),
-        "source": "Warframe.Market V2 + Umbra",
-        "note": "Filtre strict : Uniquement les mods et les arcanes"
+        "source": "Warframe.Market API V2",
+        "note": "Extraction sélective (Uniquement les mods et les arcanes)"
     }
 
     final_db = {
@@ -302,10 +288,15 @@ def save_json(database: Dict, output_path: Path):
 # POINT D'ENTRÉE
 # ==============================================================================
 if __name__ == "__main__":
+    # Définition du chemin de sortie relatif vers le dossier data/
     output_dir = Path("data")
     output_dir.mkdir(exist_ok=True)
 
     db = build_database()
-    db = add_umbra_mods(db)
     
-    save_json(db, output_dir / "mods_database.json")
+    # Si le manifeste et les fiches ont été récupérés, on injecte Umbra et on enregistre
+    if db:
+        db = add_umbra_mods(db)
+        save_json(db, output_dir / "mods_database.json")
+    else:
+        print("❌ Script interrompu car la base de données extraite est vide.")
