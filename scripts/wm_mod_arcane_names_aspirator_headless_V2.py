@@ -23,8 +23,17 @@ DELAY = 0.4
 HEADERS = {
     "Accept": "application/json",
     "User-Agent": "WFM-Aspirator-V2-Bot"
-    # Pas de "Language" header pour obtenir TOUTES les langues disponibles [3]
 }
+
+HEADERS_EN = {
+    "Accept": "application/json",
+    "User-Agent": "WFM-Aspirator-V2-Bot",
+    "Language": "en"
+}
+
+LANGUAGE_CODES = [
+    "en", "fr", "de", "es", "it", "pt", "ru", "uk", "pl", "cs", "sv", "zh-hans", "zh-hant", "ko"
+]
 
 # Filtres pour ne garder que ce qui nous intéresse
 ALLOWED_TAGS = {"mod", "arcane_enhancement"}
@@ -48,6 +57,42 @@ def get_server_version():
     except:
         return None
 
+
+def fetch_manifest_names() -> tuple[list, Dict[str, Dict[str, str]]]:
+    """Récupère les noms multilingues du manifeste pour toutes les langues voulues."""
+    names_by_slug: Dict[str, Dict[str, str]] = {}
+    all_items = []
+
+    for index, lang in enumerate(LANGUAGE_CODES):
+        headers = {**HEADERS, "Language": lang}
+        print(f"📡 Récupération des noms ({lang})...")
+        try:
+            response = requests.get(f"{BASE_URL}/items", headers=headers, timeout=15)
+            response.raise_for_status()
+            data = response.json().get("data", [])
+        except Exception as e:
+            print(f"⚠️ Échec de la récupération des noms pour {lang} : {e}")
+            continue
+
+        if index == 0:
+            all_items = data
+
+        for item in data:
+            slug = item.get("slug") or item.get("url_name")
+            if not slug:
+                continue
+
+            i18n = item.get("i18n", {})
+            if not isinstance(i18n, dict):
+                continue
+
+            for code, lang_data in i18n.items():
+                if isinstance(lang_data, dict) and lang_data.get("name"):
+                    names_by_slug.setdefault(slug, {})[code] = lang_data["name"]
+
+    return all_items, names_by_slug
+
+
 def fetch_item_details(slug: str) -> Any:
     """
     Récupère les détails d'un item.
@@ -55,7 +100,7 @@ def fetch_item_details(slug: str) -> Any:
     """
     global FIRST_API_CALL_LOGGED
     try:
-        response = requests.get(f"{BASE_URL}/item/{slug}", headers=HEADERS, timeout=10)
+        response = requests.get(f"{BASE_URL}/item/{slug}", headers=HEADERS_EN, timeout=10)
         
         if response.status_code == 200:
             full_data = response.json()
@@ -82,7 +127,7 @@ def fetch_item_details(slug: str) -> Any:
         print(f"⚠️ Erreur réseau sur {slug}: {e}")
     return None
 
-def normalize_item_data(api_item: Dict) -> Dict:
+def normalize_item_data(api_item: Dict, names: Dict[str, str] | None = None) -> Dict:
     """
     Transforme les données de l'API au format attendu.
     API → Format normalisé
@@ -90,19 +135,17 @@ def normalize_item_data(api_item: Dict) -> Dict:
     if not api_item:
         return {}
     
-    # Extraction des TOUS les noms multilingues depuis i18n
-    names = {}
+    if names is None:
+        names = {}
+        i18n = api_item.get("i18n", {})
+        for lang, lang_data in i18n.items():
+            if isinstance(lang_data, dict) and lang_data.get("name"):
+                names[lang] = lang_data.get("name", "")
+    
     description = None
     wiki_link = None
     
     i18n = api_item.get("i18n", {})
-    
-    # Récupérer TOUS les noms dans toutes les langues disponibles
-    for lang, lang_data in i18n.items():
-        if isinstance(lang_data, dict):
-            names[lang] = lang_data.get("name", "")
-    
-    # Prioriser l'anglais pour description et wiki_link (MUST BE EN ONLY)
     if "en" in i18n and isinstance(i18n["en"], dict):
         description = i18n["en"].get("description")
         wiki_link = i18n["en"].get("wikiLink")
@@ -171,8 +214,7 @@ def build_database():
 
     # 2. Récupération du manifeste (liste de tous les items) [5]
     print("📡 Récupération du manifeste global...")
-    response = requests.get(f"{BASE_URL}/items", headers=HEADERS)
-    all_items = response.json().get("data", [])
+    all_items, names_by_slug = fetch_manifest_names()
     total = len(all_items)
     print(f"✅ {total} items trouvés. Début de l'analyse...")
 
@@ -196,7 +238,7 @@ def build_database():
 
             if tags.intersection(ALLOWED_TAGS):
                 # Normaliser les données avant de les stocker
-                normalized_item = normalize_item_data(main_item)
+                normalized_item = normalize_item_data(main_item, names_by_slug.get(slug))
                 database[slug] = normalized_item
                 new_count += 1
             else:
@@ -262,7 +304,8 @@ def add_umbra_mods(database: Dict) -> Dict:
     return database
 
 if __name__ == "__main__":
-    DATA_DIR.mkdir(exist_ok=True)
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    BLACKLIST_PATH.parent.mkdir(parents=True, exist_ok=True)
     
     try:
         # Lancement du processus
