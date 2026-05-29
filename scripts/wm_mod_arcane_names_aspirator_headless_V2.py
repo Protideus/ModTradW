@@ -31,16 +31,18 @@ HEADERS_EN = {
     "Language": "en"
 }
 
+# Base path pour écrire data/ et blacklist de manière déterministe.
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
+DATABASE_PATH = DATA_DIR / "mods_database.json"
+BLACKLIST_PATH = DATA_DIR / "ignored_slugs.json"
+
 LANGUAGE_CODES = [
     "en", "fr", "de", "es", "it", "pt", "ru", "uk", "pl", "cs", "sv", "zh-hans", "zh-hant", "ko"
 ]
 
 # Filtres pour ne garder que ce qui nous intéresse
 ALLOWED_TAGS = {"mod", "arcane_enhancement"}
-
-DATA_DIR = Path("data")
-DATABASE_PATH = DATA_DIR / "mods_database.json"
-BLACKLIST_PATH = DATA_DIR / "ignored_slugs.json"
 
 # Variable globale pour ne logger le contenu de l'API qu'une seule fois
 FIRST_API_CALL_LOGGED = False
@@ -56,6 +58,22 @@ def get_server_version():
         return response.json().get("data", {}).get("version")
     except:
         return None
+
+
+def load_existing_metadata() -> Dict[str, Any]:
+    """Lit les métadonnées existantes dans mods_database.json, si elles sont disponibles."""
+    if not DATABASE_PATH.exists():
+        return {}
+
+    try:
+        with open(DATABASE_PATH, 'r', encoding='utf-8') as f:
+            content = f.read().strip()
+            if not content:
+                return {}
+            data = json.loads(content)
+            return data.get("metadata", {}) or {}
+    except Exception:
+        return {}
 
 
 def fetch_manifest_names() -> tuple[list, Dict[str, Dict[str, str]]]:
@@ -308,16 +326,31 @@ if __name__ == "__main__":
     BLACKLIST_PATH.parent.mkdir(parents=True, exist_ok=True)
     
     try:
+        api_version = get_server_version()
+        existing_metadata = load_existing_metadata()
+
+        if api_version:
+            print(f"ℹ️ Version API détectée : {api_version}")
+            if existing_metadata.get("api_version") == api_version:
+                print(f"✅ Version identique ({api_version}) trouvée dans mods_database.json, mise à jour ignorée.")
+                sys.exit(0)
+        else:
+            print("⚠️ Impossible de récupérer la version API")
+
         # Lancement du processus
         final_items = build_database()
         final_items = add_umbra_mods(final_items)
         
         # Sauvegarde finale avec métadonnées
+        metadata = {
+            "last_update": datetime.now().isoformat(),
+            "count": len(final_items)
+        }
+        if api_version:
+            metadata["api_version"] = api_version
+
         output = {
-            "metadata": {
-                "last_update": datetime.now().isoformat(),
-                "count": len(final_items)
-            },
+            "metadata": metadata,
             "items": final_items
         }
         
