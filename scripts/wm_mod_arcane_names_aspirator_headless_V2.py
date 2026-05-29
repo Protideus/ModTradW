@@ -90,21 +90,22 @@ def normalize_item_data(api_item: Dict) -> Dict:
     if not api_item:
         return {}
     
-    # Extraction des noms multilingues depuis i18n
+    # Extraction des TOUS les noms multilingues depuis i18n
     names = {}
     description = None
     wiki_link = None
     
     i18n = api_item.get("i18n", {})
+    
+    # Récupérer TOUS les noms dans toutes les langues disponibles
     for lang, lang_data in i18n.items():
         if isinstance(lang_data, dict):
             names[lang] = lang_data.get("name", "")
-            # Prendre la première description trouvée
-            if not description:
-                description = lang_data.get("description", "")
-            # Prendre le premier wiki_link trouvé
-            if not wiki_link:
-                wiki_link = lang_data.get("wikiLink", "")
+    
+    # Prioriser l'anglais pour description et wiki_link (MUST BE EN ONLY)
+    if "en" in i18n and isinstance(i18n["en"], dict):
+        description = i18n["en"].get("description")
+        wiki_link = i18n["en"].get("wikiLink")
     
     # Construction de l'item normalisé
     normalized = {
@@ -206,10 +207,11 @@ def build_database():
         if (index + 1) % 500 == 0 or (index + 1) == total:
             print(f"🕒 Progression : {index + 1}/{total} | Nouveaux ajoutés : {new_count}")
 
-    # 4. Sauvegarde de la blacklist pour le prochain run
+    # 4. Sauvegarde de la blacklist pour le prochain run (toujours créé)
     try:
         with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
             json.dump(sorted(list(blacklist)), f, indent=2, ensure_ascii=False)
+        print(f"💾 Blacklist sauvegardée : {len(blacklist)} items ignorés")
     except Exception as e:
         print(f"⚠️ Erreur lors de la sauvegarde de la blacklist : {e}")
 
