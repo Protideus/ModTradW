@@ -36,6 +36,8 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
+          git pull --rebase --autostash origin main
+
           git add data/mods_database.json data/ignored_slugs.json || true
 
           if git diff --cached --quiet; then
@@ -43,6 +45,5 @@ jobs:
             exit 0
           fi
 
-          git pull --rebase origin main
           git commit -m "Mise à jour automatique de la base de données [skip ci]"
           git push origin main
