@@ -54,9 +54,11 @@ FIRST_API_CALL_LOGGED = False
 def get_server_version():
     """Vérifie la version actuelle sur le serveur pour éviter de tout rescanner [4]."""
     try:
-        response = requests.get(f"{BASE_URL}/versions", headers=HEADERS)
-        return response.json().get("data", {}).get("version")
-    except:
+        response = requests.get(f"{BASE_URL}/versions", headers=HEADERS, timeout=15)
+        response.raise_for_status()
+        data = response.json()
+        return data.get("apiVersion") or data.get("data", {}).get("version")
+    except Exception:
         return None
 
 
@@ -324,6 +326,8 @@ def add_umbra_mods(database: Dict) -> Dict:
 if __name__ == "__main__":
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     BLACKLIST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    print(f"📁 Blacklist path: {BLACKLIST_PATH}")
+    print(f"📁 Database path: {DATABASE_PATH}")
     
     try:
         api_version = get_server_version()
