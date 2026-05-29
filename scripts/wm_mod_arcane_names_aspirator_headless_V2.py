@@ -55,7 +55,8 @@ def fetch_item_details(slug: str) -> Any:
     """
     global FIRST_API_CALL_LOGGED
     try:
-        response = requests.get(f"{BASE_URL}/item/{slug}", headers=HEADERS)
+        response = requests.get(f"{BASE_URL}/item/{slug}", headers=HEADERS, timeout=10)
+        
         if response.status_code == 200:
             full_data = response.json()
             
@@ -67,6 +68,16 @@ def fetch_item_details(slug: str) -> Any:
             
             # On extrait les données de l'item
             return full_data.get("data")
+        elif response.status_code == 404:
+            # Item n'existe pas
+            return None
+        else:
+            print(f"⚠️ HTTP {response.status_code} sur {slug}")
+            return None
+    except requests.exceptions.Timeout:
+        print(f"⚠️ Timeout sur {slug} (10s)")
+    except requests.exceptions.ConnectionError:
+        print(f"⚠️ Erreur de connexion sur {slug}")
     except Exception as e:
         print(f"⚠️ Erreur réseau sur {slug}: {e}")
     return None
@@ -127,17 +138,35 @@ def normalize_item_data(api_item: Dict) -> Dict:
 def build_database():
     """Boucle principale pour remplir le dictionnaire de données."""
     
-    # 1. Chargement de l'existant
+    # 1. Chargement de l'existant avec gestion d'erreur
     database = {}
     if DATABASE_PATH.exists():
-        with open(DATABASE_PATH, 'r', encoding='utf-8') as f:
-            old_data = json.load(f)
-            database = old_data.get("items", {})
+        try:
+            with open(DATABASE_PATH, 'r', encoding='utf-8') as f:
+                content = f.read().strip()
+                if content:  # Vérifier que le fichier n'est pas vide
+                    old_data = json.loads(content)
+                    database = old_data.get("items", {})
+                    print(f"✅ Base de données existante chargée : {len(database)} items")
+                else:
+                    print("⚠️ Fichier mods_database.json vide, création d'une nouvelle base")
+        except json.JSONDecodeError as e:
+            print(f"⚠️ Erreur JSON dans mods_database.json : {e}")
+            print("🔄 Création d'une nouvelle base de données")
+            database = {}
+        except Exception as e:
+            print(f"⚠️ Erreur lors de la lecture : {e}")
+            database = {}
 
     blacklist = set()
     if BLACKLIST_PATH.exists():
-        with open(BLACKLIST_PATH, 'r', encoding='utf-8') as f:
-            blacklist = set(json.load(f))
+        try:
+            with open(BLACKLIST_PATH, 'r', encoding='utf-8') as f:
+                content = f.read().strip()
+                if content:
+                    blacklist = set(json.loads(content))
+        except (json.JSONDecodeError, Exception):
+            pass  # Recommencer avec une liste vide si erreur
 
     # 2. Récupération du manifeste (liste de tous les items) [5]
     print("📡 Récupération du manifeste global...")
@@ -178,8 +207,11 @@ def build_database():
             print(f"🕒 Progression : {index + 1}/{total} | Nouveaux ajoutés : {new_count}")
 
     # 4. Sauvegarde de la blacklist pour le prochain run
-    with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
-        json.dump(sorted(list(blacklist)), f, indent=2)
+    try:
+        with open(BLACKLIST_PATH, 'w', encoding='utf-8') as f:
+            json.dump(sorted(list(blacklist)), f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"⚠️ Erreur lors de la sauvegarde de la blacklist : {e}")
 
     return database
 
@@ -230,20 +262,27 @@ def add_umbra_mods(database: Dict) -> Dict:
 if __name__ == "__main__":
     DATA_DIR.mkdir(exist_ok=True)
     
-    # Lancement du processus
-    final_items = build_database()
-    final_items = add_umbra_mods(final_items)
-    
-    # Sauvegarde finale avec métadonnées
-    output = {
-        "metadata": {
-            "last_update": datetime.now().isoformat(),
-            "count": len(final_items)
-        },
-        "items": final_items
-    }
-    
-    with open(DATABASE_PATH, 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-    
-    print(f"🎉 Terminé ! Base de données : {len(final_items)} items au total.")
+    try:
+        # Lancement du processus
+        final_items = build_database()
+        final_items = add_umbra_mods(final_items)
+        
+        # Sauvegarde finale avec métadonnées
+        output = {
+            "metadata": {
+                "last_update": datetime.now().isoformat(),
+                "count": len(final_items)
+            },
+            "items": final_items
+        }
+        
+        with open(DATABASE_PATH, 'w', encoding='utf-8') as f:
+            json.dump(output, f, ensure_ascii=False, indent=2)
+        
+        print(f"🎉 Terminé ! Base de données : {len(final_items)} items au total.")
+    except KeyboardInterrupt:
+        print("\n⚠️ Script interrompu par l'utilisateur")
+    except Exception as e:
+        print(f"❌ Erreur critique : {e}")
+        import traceback
+        traceback.print_exc()
