@@ -286,36 +286,141 @@ def add_umbra_mods(database: Dict) -> Dict:
     umbra_mods = [
         {
             "url_name": "umbral_intensify",
-            "names": {"en": "Umbral Intensify", "fr": "Intensité Umbrale"},
-            "tags": ["mod", "umbra", "legendary"],
-            "description": "+440% Power Strength\n+11% Sentient Damage Resistance"
+    "names": {
+      "en": "Umbral Intensify",
+      "ru": "Умбра: Интенсивность",
+      "ko": "움브랄 인텐시파이",
+      "fr": "Intensité Umbra",
+      "de": "Umbra-Intensität",
+      "zh-hant": "暗影 聚精會神",
+      "zh-hans": "暗影 聚精会神",
+      "pt": "Intensidade Umbral",
+      "es": "Intensidad Umbral",
+      "pl": "Intensywność Umbra",
+      "it": "Intensità Umbra",
+      "ja": "アンブラル Intensify",
+      "th": "Umbral Intensify",
+      "tr": "Umbral Intensify"
+    },
+    "description": "+44% Ability Strength\n+11% Sentient Damage Resistance",
+    "wiki_link": "https://wiki.warframe.com/w/Umbral_Intensify",
+    "tags": [
+      "mod",
+      "legendary",
+      "warframe",
+      "umbra"
+    ]
         },
         {
             "url_name": "umbral_vitality",
-            "names": {"en": "Umbral Vitality", "fr": "Vitalité Umbrale"},
-            "tags": ["mod", "umbra", "legendary"],
-            "description": "+440% Health\n+11% Sentient Damage Resistance"
+    "names": {
+      "en": "Umbral Vitality",
+      "ru": "Умбра: Живучесть",
+      "ko": "움브랄 바이탈리티",
+      "fr": "Vitalité Umbra",
+      "de": "Umbra-Vitalität",
+      "zh-hant": "暗影 生命值",
+      "zh-hans": "暗影 生命",
+      "pt": "Vitalidade Umbral",
+      "es": "Vitalidad Umbral",
+      "pl": "Witalność Umbra",
+      "it": "Vitalità Umbra",
+      "ja": "アンブラル Vitality",
+      "th": "Umbral Vitality",
+      "tr": "Umbral Vitality"
+    },
+    "description": "+440% Health\n+11% Sentient Damage Resistance",
+    "wiki_link": "https://wiki.warframe.com/w/Umbral_Vitality",
+    "tags": [
+      "mod",
+      "legendary",
+      "warframe",
+      "umbra"
+    ]
         },
         {
             "url_name": "umbral_fiber",
-            "names": {"en": "Umbral Fiber", "fr": "Fibre Umbrale"},
-            "tags": ["mod", "umbra", "legendary"],
-            "description": "+440% Armor\n+11% Sentient Damage Resistance"
+    "names": {
+      "en": "Umbral Fiber",
+      "ru": "Умбра: Фибра",
+      "ko": "움브랄 파이버",
+      "fr": "Fibre Umbra",
+      "de": "Umbra-Fiber",
+      "zh-hant": "暗影 纖維",
+      "zh-hans": "暗影 纤维",
+      "pt": "Fibra Umbral",
+      "es": "Fibra Umbral",
+      "pl": "Włókno Umbra",
+      "it": "Fibra Umbra",
+      "ja": "アンブラル Fiber",
+      "th": "Umbral Fiber",
+      "tr": "Umbral Fiber"
+    },
+    "description": "+660% Armor\n+11% Sentient Damage Resistance",
+    "wiki_link": "https://wiki.warframe.com/w/Umbral_Fiber",
+    "tags": [
+      "mod",
+      "legendary",
+      "warframe",
+      "umbra"
+    ]
         },
         {
             "url_name": "sacrificial_steel",
-            "names": {"en": "Sacrificial Steel", "fr": "Acier Sacrificiel"},
-            "tags": ["mod", "sacrificial", "legendary"],
-            "description": "+440% Melee Damage\n+11% Sentient Damage Resistance"
+            "names": {
+                "en": "Sacrificial Steel",
+                "ru": "Жертвенная Сталь",
+                "ko": "새크리피셜 스틸",
+                "fr": "Acier Sacrificiel",
+                "de": "Opfer-Stahl",
+                "zh-hant": "犧牲 斬鐵",
+                "zh-hans": "牺牲 斩铁",
+                "pt": "Aço Sacrificial",
+                "es": "Acero Sacrificado",
+                "pl": "Ofiarna Stal",
+                "it": "Acciaio Sacrificale",
+                "ja": "Sacrificial Steel",
+                "th": "Sacrificial Steel",
+                "tr": "Sacrificial Steel"
+            },
+            "description": "+220% Critical Chance (x2 for Heavy Attacks)\n+30% Damage to Sentients",
+            "wiki_link": "https://wiki.warframe.com/w/Sacrificial_Steel",
+            "tags": [
+                "mod",
+                "legendary",
+                "melee",
+                "umbra"
+            ]
         },
         {
             "url_name": "sacrificial_pressure",
-            "names": {"en": "Sacrificial Pressure", "fr": "Pression Sacrificielle"},
-            "tags": ["mod", "sacrificial", "legendary"],
-            "description": "+330% Status Chance\n+11% Sentient Damage Resistance"
+            "names": {
+                "en": "Sacrificial Pressure",
+                "ru": "Жертвенный Нажим",
+                "ko": "새크리피셜 프레셔",
+                "fr": "Pression Sacrificielle",
+                "de": "Opfer-Druck",
+                "zh-hant": "犧牲 壓迫點",
+                "zh-hans": "牺牲 压迫点",
+                "pt": "Pressão Sacrificial",
+                "es": "Presión Sacrificada",
+                "pl": "Ofiarny Nacisk",
+                "it": "Pressione Sacrificale",
+                "ja": "Sacrificial Pressure",
+                "th": "Sacrificial Pressure",
+                "tr": "Sacrificial Pressure"
+            },
+            "description": "+110% Melee Damage\n+30% Damage to Sentients",
+            "wiki_link": "https://wiki.warframe.com/w/Sacrificial_Pressure",
+            "tags": [
+                "mod",
+                "legendary",
+                "melee",
+                "umbra"
+            ]
         }
     ]
-    
+
     for mod in umbra_mods:
         slug = mod["url_name"]
         if slug not in database:
