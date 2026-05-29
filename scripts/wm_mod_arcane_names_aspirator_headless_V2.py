@@ -22,8 +22,8 @@ DELAY = 0.4
 
 HEADERS = {
     "Accept": "application/json",
-    "User-Agent": "WFM-Aspirator-V2-Bot",
-    "Language": "fr" # Pour récupérer les noms en français quand disponibles [3]
+    "User-Agent": "WFM-Aspirator-V2-Bot"
+    # Pas de "Language" header pour obtenir TOUTES les langues disponibles [3]
 }
 
 # Filtres pour ne garder que ce qui nous intéresse
