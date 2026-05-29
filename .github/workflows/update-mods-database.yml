@@ -29,7 +29,7 @@ jobs:
           pip install requests
 
       - name: Exécuter l'aspirateur de données
-        run: python wm_mod_arcane_names_aspirator_headless_V2.py
+        run: python scripts/wm_mod_arcane_names_aspirator_headless_V2.py
 
       - name: Committer et pousser les changements
         run: |
