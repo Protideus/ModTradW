@@ -4,6 +4,13 @@ import time
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Set
+import sys
+import io
+
+# Force UTF-8 encoding pour les emojis (Important pour PowerShell)
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 # ==============================================================================
 # CONFIGURATION
@@ -64,6 +71,55 @@ def fetch_item_details(slug: str) -> Any:
         print(f"⚠️ Erreur réseau sur {slug}: {e}")
     return None
 
+def normalize_item_data(api_item: Dict) -> Dict:
+    """
+    Transforme les données de l'API au format attendu.
+    API → Format normalisé
+    """
+    if not api_item:
+        return {}
+    
+    # Extraction des noms multilingues depuis i18n
+    names = {}
+    description = None
+    wiki_link = None
+    
+    i18n = api_item.get("i18n", {})
+    for lang, lang_data in i18n.items():
+        if isinstance(lang_data, dict):
+            names[lang] = lang_data.get("name", "")
+            # Prendre la première description trouvée
+            if not description:
+                description = lang_data.get("description", "")
+            # Prendre le premier wiki_link trouvé
+            if not wiki_link:
+                wiki_link = lang_data.get("wikiLink", "")
+    
+    # Construction de l'item normalisé
+    normalized = {
+        "url_name": api_item.get("slug", ""),
+        "names": names,
+        "tags": api_item.get("tags", []),
+    }
+    
+    # Ajouter les champs optionnels s'ils existent
+    if description:
+        normalized["description"] = description
+    if wiki_link:
+        normalized["wiki_link"] = wiki_link
+    
+    # Ajouter d'autres champs utiles
+    if "rarity" in api_item:
+        normalized["rarity"] = api_item["rarity"]
+    if "tradable" in api_item:
+        normalized["tradable"] = api_item["tradable"]
+    if "tradingTax" in api_item:
+        normalized["tradingTax"] = api_item["tradingTax"]
+    if "maxRank" in api_item:
+        normalized["maxRank"] = api_item["maxRank"]
+    
+    return normalized
+
 # ==============================================================================
 # LOGIQUE DE CONSTRUCTION
 # ==============================================================================
@@ -109,8 +165,9 @@ def build_database():
             tags = set(main_item.get("tags", [])) if main_item else set()
 
             if tags.intersection(ALLOWED_TAGS):
-                # AJOUT CRUCIAL : On stocke l'item dans notre base
-                database[slug] = main_item
+                # Normaliser les données avant de les stocker
+                normalized_item = normalize_item_data(main_item)
+                database[slug] = normalized_item
                 new_count += 1
             else:
                 # Si ce n'est ni un mod ni une arcane, on blacklist
@@ -129,11 +186,45 @@ def build_database():
 def add_umbra_mods(database: Dict) -> Dict:
     """Injection manuelle des mods Umbra (car non listés dans l'API publique) [7]."""
     print("🛠️ Injection des mods Umbra...")
-    # Vos données Umbra (extraites de votre source 12)
-    umbra_slugs = ["umbral_intensify", "umbral_vitality", "umbral_fiber", "sacrificial_steel", "sacrificial_pressure"]
-    for slug in umbra_slugs:
+    # Vos données Umbra (extraites de votre source 12) - format normalisé
+    umbra_mods = [
+        {
+            "url_name": "umbral_intensify",
+            "names": {"en": "Umbral Intensify", "fr": "Intensité Umbrale"},
+            "tags": ["mod", "umbra", "legendary"],
+            "description": "+440% Power Strength\n+11% Sentient Damage Resistance"
+        },
+        {
+            "url_name": "umbral_vitality",
+            "names": {"en": "Umbral Vitality", "fr": "Vitalité Umbrale"},
+            "tags": ["mod", "umbra", "legendary"],
+            "description": "+440% Health\n+11% Sentient Damage Resistance"
+        },
+        {
+            "url_name": "umbral_fiber",
+            "names": {"en": "Umbral Fiber", "fr": "Fibre Umbrale"},
+            "tags": ["mod", "umbra", "legendary"],
+            "description": "+440% Armor\n+11% Sentient Damage Resistance"
+        },
+        {
+            "url_name": "sacrificial_steel",
+            "names": {"en": "Sacrificial Steel", "fr": "Acier Sacrificiel"},
+            "tags": ["mod", "sacrificial", "legendary"],
+            "description": "+440% Melee Damage\n+11% Sentient Damage Resistance"
+        },
+        {
+            "url_name": "sacrificial_pressure",
+            "names": {"en": "Sacrificial Pressure", "fr": "Pression Sacrificielle"},
+            "tags": ["mod", "sacrificial", "legendary"],
+            "description": "+330% Status Chance\n+11% Sentient Damage Resistance"
+        }
+    ]
+    
+    for mod in umbra_mods:
+        slug = mod["url_name"]
         if slug not in database:
-            database[slug] = {"url_name": slug, "tags": ["mod", "umbra", "legendary"]}
+            database[slug] = mod
+    
     return database
 
 if __name__ == "__main__":
