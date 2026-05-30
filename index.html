@@ -9,7 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-image: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.85)), url('https://raw.githubusercontent.com/Protideus/ModTradW/main/ModTradW%20background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #1f2937; }
         ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
@@ -301,13 +307,15 @@
         }
 
         function showReadme() {
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <img src="https://raw.githubusercontent.com/Protideus/ModTradW/main/ModTradW%20banner.jpg" alt="Bannière" class="w-full rounded-2xl mb-6">
+                <pre id="readmeText" class="whitespace-pre-wrap text-sm text-gray-300"></pre>
+            `;
             fetch('README.md')
                 .then(r => r.text())
-                .then(text => {
-                    const content = document.getElementById('modalContent');
-                    content.innerHTML = `<pre class="whitespace-pre-wrap text-sm text-gray-300">${text}</pre>`;
-                    document.getElementById('modal').classList.remove('hidden');
-                });
+                .then(text => { document.getElementById('readmeText').textContent = text; });
+            document.getElementById('modal').classList.remove('hidden');
         }
 
         function showAuthorInfo() {
