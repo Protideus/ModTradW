@@ -149,12 +149,12 @@ def fetch_item_details(slug: str) -> Any:
 
 def normalize_item_data(api_item: Dict, names: Dict[str, str] | None = None) -> Dict:
     """
-    Transforme les données de l'API au format attendu.
-    API → Format normalisé
+    Transforme les données de l'API au format attendu (version allégée).
     """
     if not api_item:
         return {}
     
+    # Récupération des noms multilingues
     if names is None:
         names = {}
         i18n = api_item.get("i18n", {})
@@ -164,34 +164,29 @@ def normalize_item_data(api_item: Dict, names: Dict[str, str] | None = None) -> 
     
     description = None
     wiki_link = None
+    thumb = None
     
+    # Extraction depuis i18n.en (comme dans l'exemple Serration)
     i18n = api_item.get("i18n", {})
-    if "en" in i18n and isinstance(i18n["en"], dict):
-        description = i18n["en"].get("description")
-        wiki_link = i18n["en"].get("wikiLink")
+    en_data = i18n.get("en")
+    if isinstance(en_data, dict):
+        description = en_data.get("description")
+        wiki_link = en_data.get("wikiLink")
+        thumb = en_data.get("thumb")          
     
-    # Construction de l'item normalisé
+    # Construction de l'item normalisé 
     normalized = {
         "url_name": api_item.get("slug", ""),
         "names": names,
         "tags": api_item.get("tags", []),
+        "thumb": thumb,                       
     }
     
-    # Ajouter les champs optionnels s'ils existent
+    # Champs optionnels conservés
     if description:
         normalized["description"] = description
     if wiki_link:
         normalized["wiki_link"] = wiki_link
-    
-    # Ajouter d'autres champs utiles
-    if "rarity" in api_item:
-        normalized["rarity"] = api_item["rarity"]
-    if "tradable" in api_item:
-        normalized["tradable"] = api_item["tradable"]
-    if "tradingTax" in api_item:
-        normalized["tradingTax"] = api_item["tradingTax"]
-    if "maxRank" in api_item:
-        normalized["maxRank"] = api_item["maxRank"]
     
     return normalized
 
