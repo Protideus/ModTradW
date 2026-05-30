@@ -2,7 +2,7 @@
 
 An interactive, ultra-fast, multi-language translation tool tailored for **Warframe** players to instantly find mod and arcane names across different languages. 
 
-Built as a lightweight, serverless static web application, it provides global players with a seamless way to bridge language barriers while exploring crucial item metrics (descriptions, rarities, trading taxes, and official Wiki links).
+Built as a lightweight, serverless static web application, it provides global players with a seamless way to bridge language barriers while exploring crucial item metrics (descriptions, images, and official Wiki links).
 
 ---
 
