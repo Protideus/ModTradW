@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Any, Set
 import sys
 import io
+import base64
 
 # Force UTF-8 encoding pour les emojis (Important pour PowerShell)
 if sys.stdout.encoding != 'utf-8':
@@ -52,12 +53,22 @@ FIRST_API_CALL_LOGGED = False
 # ==============================================================================
 
 def get_server_version():
-    """Vérifie la version actuelle sur le serveur pour éviter de tout rescanner [4]."""
+    """
+    Récupère la version de la collection 'items' (timestamp base64 décodé).
+    C'est le vrai indicateur de mise à jour des mods/arcanes.
+    """
     try:
         response = requests.get(f"{BASE_URL}/versions", headers=HEADERS, timeout=15)
         response.raise_for_status()
         data = response.json()
-        return data.get("apiVersion") or data.get("data", {}).get("version")
+        
+        items_b64 = data.get("data", {}).get("collections", {}).get("items")
+        if items_b64:
+            import base64
+            return base64.b64decode(items_b64).decode("utf-8")
+        
+        # Fallback (au cas où)
+        return data.get("apiVersion")
     except Exception:
         return None
 
@@ -430,16 +441,16 @@ if __name__ == "__main__":
     print(f"📁 Database path: {DATABASE_PATH}")
     
     try:
-        api_version = get_server_version()
+        items_version = get_server_version()
         existing_metadata = load_existing_metadata()
 
-        if api_version:
-            print(f"ℹ️ Version API détectée : {api_version}")
-            if existing_metadata.get("api_version") == api_version:
-                print(f"✅ Version identique ({api_version}) trouvée dans mods_database.json, mise à jour ignorée.")
+        if items_version:
+            print(f"ℹ️ Version collection items détectée : {items_version}")
+            if existing_metadata.get("items_version") == items_version:
+                print(f"✅ Version identique ({items_version}) trouvée dans mods_database.json, mise à jour ignorée.")
                 sys.exit(0)
         else:
-            print("⚠️ Impossible de récupérer la version API")
+            print("⚠️ Impossible de récupérer la version de la collection items")
 
         # Lancement du processus
         final_items = build_database()
@@ -450,8 +461,8 @@ if __name__ == "__main__":
             "last_update": datetime.now().isoformat(),
             "count": len(final_items)
         }
-        if api_version:
-            metadata["api_version"] = api_version
+        if items_version:
+            metadata["items_version"] = items_version
 
         output = {
             "metadata": metadata,
