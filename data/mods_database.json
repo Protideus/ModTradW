@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "last_update": "2026-06-12T07:24:01.522580",
-    "count": 1555,
-    "api_version": "0.25.0"
+    "last_update": "2026-07-25T21:53:47.589560",
+    "count": 1563,
+    "items_version": "2026-07-13T07:59:50"
   },
   "items": {
     "creeping_bullseye": {
@@ -39951,6 +39951,200 @@
         "melee",
         "umbra"
       ]
+    },
+    "primary_compression": {
+      "url_name": "primary_compression",
+      "names": {
+        "en": "Primary Compression",
+        "fr": "Compression Principale",
+        "de": "Arkana: Primäre Kompression",
+        "es": "Compresión Primaria",
+        "it": "Primary Compression",
+        "pt": "Compressão Primária",
+        "ru": "Первичная Компрессия",
+        "uk": "Основне Стиснення",
+        "pl": "Kompresja Broni Głównej",
+        "zh-hans": "主要·压缩",
+        "zh-hant": "主要壓縮",
+        "ko": "프라이머리 컴프레션"
+      },
+      "tags": [
+        "rare",
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/primary_compression.4c7b696553acb6a8cb573aa0d9990b2b.128x128.webp",
+      "description": "On aim: x0.2 explosion radius, +100% damage and +5.5% ammo efficiency for every 1m radius lost."
+    },
+    "arcane_sculptor": {
+      "url_name": "arcane_sculptor",
+      "names": {
+        "en": "Arcane Sculptor",
+        "fr": "Arcane Sculpteur",
+        "de": "Arkana: Bildhauer",
+        "es": "Escultor Arcano",
+        "it": "Arcane Sculptor",
+        "pt": "Escultor Arcano",
+        "ru": "Мистический Скульптор",
+        "uk": "Містичний Скульптор",
+        "pl": "Arkanum Rzeźbiarza",
+        "zh-hans": "赋能·雕塑",
+        "zh-hant": "雕塑賦能",
+        "ko": "아케인 스컬프터"
+      },
+      "tags": [
+        "rare",
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/arcane_sculptor.c585312d90bbedba54bd156a47489c7c.128x128.webp",
+      "description": "On creating an object with abilities: casts have 175% Ability Efficiency for 12s. +1 Arcane Revive\n+1 Arcane Revive"
+    },
+    "secondary_cryogenic": {
+      "url_name": "secondary_cryogenic",
+      "names": {
+        "en": "Secondary Cryogenic",
+        "fr": "Cryogénie Secondaire",
+        "de": "Arkana: Sekundäre Kryogenik",
+        "es": "Criogenia Secundaria",
+        "it": "Secondary Cryogenic",
+        "pt": "Criogenia Secundária",
+        "ru": "Вторичный Криогенез",
+        "uk": "Допоміжне Охолодження",
+        "pl": "Kriogenika Broni Bocznej",
+        "zh-hans": "次要·低温",
+        "zh-hant": "次要冷凍",
+        "ko": "세컨더리 크라이오제닉"
+      },
+      "tags": [
+        "rare",
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/secondary_cryogenic.4e2a2b57bf830696a8ed87eccdc6b3d6.128x128.webp",
+      "description": "On Puncture: Apply 3 Cold stacks on targets within 15m."
+    },
+    "melee_assimilation": {
+      "url_name": "melee_assimilation",
+      "names": {
+        "en": "Melee Assimilation",
+        "fr": "Assimilation De Mêlée",
+        "de": "Nahkampf: Assimilation",
+        "es": "Asimilación De Cuerpo A Cuerpo",
+        "it": "Melee Assimilation",
+        "pt": "Assimilação (Corpo A Corpo)",
+        "ru": "Ассимиляция Ближнего Боя",
+        "uk": "Рукопашна Асиміляція",
+        "pl": "Asymilacja Broni Białej",
+        "zh-hans": "近战·同化",
+        "zh-hant": "近戰同化",
+        "ko": "밀리 어시밀레이션"
+      },
+      "tags": [
+        "rare",
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/melee_assimilation.a8b52f8201ebde22732ab0737998bcbf.128x128.webp",
+      "description": "On Shield Break:\n+150% Melee Damage on Heavy Attack and Heavy Attack kills restore +30% of max Shields for 20s."
+    },
+    "noctua_swarm": {
+      "url_name": "noctua_swarm",
+      "names": {
+        "en": "Noctua Swarm",
+        "fr": "Essaim Du Noctua",
+        "de": "Noctua-Schwarm",
+        "es": "Enjambre De Noctua",
+        "it": "Noctua Swarm",
+        "pt": "Enxame Do Noctua",
+        "ru": "Рой Ноктуа",
+        "uk": "Рій Ноктуа",
+        "pl": "Stado Noctua",
+        "zh-hans": "夜枭群袭",
+        "zh-hant": "智典隼群",
+        "ko": "녹투아 스웜"
+      },
+      "tags": [
+        "mod",
+        "rare",
+        "warframe",
+        "dante"
+      ],
+      "thumb": "items/images/en/thumbs/noctua_swarm.c3d7acfccb16223ff48cee58814eb44b.128x128.webp",
+      "description": "Noctua Augment: Alternate Fire releases Paragrimms that swarm 8m around the point of aim for 15s, silencing enemies and stealing their Energy for allies."
+    },
+    "reroot_rampage": {
+      "url_name": "reroot_rampage",
+      "names": {
+        "en": "Reroot Rampage",
+        "fr": "Pépinière Déchaînée",
+        "de": "Wurzelneu-Randale",
+        "es": "Enraizamiento Desenfrenado",
+        "it": "Reroot Rampage",
+        "pt": "Chacina Reenraizada",
+        "ru": "Неистовое Закоренение",
+        "uk": "Шалене Укорінення",
+        "pl": "Myceliczna Rozróba",
+        "zh-hans": "菌丝暴动",
+        "zh-hant": "返童暴走",
+        "ko": "리루트 램페이지"
+      },
+      "tags": [
+        "rare",
+        "augment",
+        "nokko",
+        "warframe",
+        "mod"
+      ],
+      "thumb": "items/images/en/thumbs/reroot_rampage.e7dea648f3bcc233785feab99085d831.128x128.webp",
+      "description": "Reroot Augment: Collecting Reroot orbs summons additional Sprodlings inflicting 250 Toxin Damage with increased Critical Chance each hit."
+    },
+    "kumihimo_loading": {
+      "url_name": "kumihimo_loading",
+      "names": {
+        "en": "Kumihimo Loading",
+        "fr": "Truquage Kumihimo",
+        "de": "Kumihimo-Ladung",
+        "es": "Carga Kumihimo",
+        "it": "Kumihimo Loading",
+        "pt": "Carga De Kumihimo",
+        "ru": "Загрузка Кумихимо",
+        "uk": "Надважке Куміхімо",
+        "pl": "Kumihimo Oszusta",
+        "zh-hans": "天命降临",
+        "zh-hant": "灌鉛織運",
+        "ko": "쿠미히모 로딩"
+      },
+      "tags": [
+        "rare",
+        "augment",
+        "koumei",
+        "warframe",
+        "mod"
+      ],
+      "thumb": "items/images/en/thumbs/kumihimo_loading.437c02fd811371e0fac8dd4d33c1a9b1.128x128.webp",
+      "description": "Kumihimo Augment: 6 kills with weapons affected by Koumei's Passive give a loaded die that always rolls 6. Hold to cast empowered Kumihimo and consume all dice."
+    },
+    "rhythm_guard": {
+      "url_name": "rhythm_guard",
+      "names": {
+        "en": "Rhythm Guard",
+        "fr": "Garde Rythmique",
+        "de": "Rhythmusschutz",
+        "es": "Guardia Rítmica",
+        "it": "Rhythm Guard",
+        "pt": "Guarda Rítmica",
+        "ru": "Ритмическая Защита",
+        "uk": "Ритмічний Вартовий",
+        "pl": "Strażnik Rytmu",
+        "zh-hans": "律动护卫",
+        "zh-hant": "節奏護衛",
+        "ko": "리듬 가드"
+      },
+      "tags": [
+        "mod",
+        "rare",
+        "warframe",
+        "temple"
+      ],
+      "thumb": "items/images/en/thumbs/rhythm_guard.7f4ae2e0a9787960359c4bd712a1efc1.128x128.webp",
+      "description": "Passive Augment: Gain 100 Overguard when using an Ability on the Backbeat. Amount doubles up to 1600 per Beat, but resets if the Beat is missed."
     }
   }
 }
