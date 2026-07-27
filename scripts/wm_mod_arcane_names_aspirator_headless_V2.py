@@ -443,23 +443,64 @@ if __name__ == "__main__":
     try:
         items_version = get_server_version()
         existing_metadata = load_existing_metadata()
+        now = datetime.now().isoformat()
 
+        version_changed = True
         if items_version:
             print(f"ℹ️ Version collection items détectée : {items_version}")
             if existing_metadata.get("items_version") == items_version:
-                print(f"✅ Version identique ({items_version}) trouvée dans mods_database.json, mise à jour ignorée.")
-                sys.exit(0)
+                print(f"✅ Version identique ({items_version}) trouvée dans mods_database.json")
+                version_changed = False
         else:
             print("⚠️ Impossible de récupérer la version de la collection items")
 
-        # Lancement du processus
+        if not version_changed:
+            # Pas de nouveau contenu → on met juste à jour last_check
+            if DATABASE_PATH.exists():
+                with open(DATABASE_PATH, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                
+                data["metadata"]["last_check"] = now
+                
+                with open(DATABASE_PATH, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, ensure_ascii=False, indent=2)
+                
+                print(f"✅ last_check mis à jour ({now}). Aucun nouveau contenu.")
+                sys.exit(0)
+
+        # === Version a changé → reconstruction complète ===
+        print("🔄 Nouvelle version détectée, reconstruction de la base...")
+        
+        # On charge l'ancien nombre d'items pour calculer les ajouts
+        old_count = 0
+        old_items = set()
+        if DATABASE_PATH.exists():
+            try:
+                with open(DATABASE_PATH, 'r', encoding='utf-8') as f:
+                    old_data = json.load(f)
+                    old_items = set(old_data.get("items", {}).keys())
+                    old_count = len(old_items)
+            except Exception:
+                pass
+
         final_items = build_database()
         final_items = add_umbra_mods(final_items)
         
-        # Sauvegarde finale avec métadonnées
+        # Calcul des nouveaux items
+        new_item_keys = [k for k in final_items.keys() if k not in old_items]
+        new_items_names = []
+        for key in new_item_keys:
+            name = final_items[key].get("names", {}).get("en") or final_items[key].get("names", {}).get("fr") or key
+            new_items_names.append(name)
+        
+        new_items_names.sort()
+
         metadata = {
-            "last_update": datetime.now().isoformat(),
-            "count": len(final_items)
+            "last_update": now,
+            "last_check": now,
+            "count": len(final_items),
+            "items_added": len(new_item_keys),
+            "new_items": new_items_names
         }
         if items_version:
             metadata["items_version"] = items_version
@@ -472,7 +513,10 @@ if __name__ == "__main__":
         with open(DATABASE_PATH, 'w', encoding='utf-8') as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
         
-        print(f"🎉 Terminé ! Base de données : {len(final_items)} items au total.")
+        print(f"🎉 Terminé ! Base de données : {len(final_items)} items (+{len(new_item_keys)} nouveaux).")
+        if new_items_names:
+            print("Nouveaux items :", ", ".join(new_items_names[:10]) + ("..." if len(new_items_names) > 10 else ""))
+            
     except KeyboardInterrupt:
         print("\n⚠️ Script interrompu par l'utilisateur")
     except Exception as e:
