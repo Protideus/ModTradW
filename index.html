@@ -114,9 +114,42 @@
                 const res = await fetch('data/mods_database.json');
                 const data = await res.json();
                 allItems = data.items;
-                document.getElementById('lastUpdate').innerHTML = `
-                    Dernière mise à jour : <span class="text-cyan-400">${new Date(data.metadata.last_update).toLocaleDateString('fr-FR')}</span>
-                `;
+
+                const meta = data.metadata || {};
+                const lastCheck = meta.last_check ? new Date(meta.last_check).toLocaleDateString('fr-FR') : null;
+                const lastUpdate = meta.last_update ? new Date(meta.last_update).toLocaleDateString('fr-FR') : null;
+                const itemsAdded = meta.items_added || 0;
+                const newItems = meta.new_items || [];
+
+                let html = '';
+
+                if (lastCheck) {
+                    html += `Dernière vérification : <span class="text-cyan-400 font-medium">${lastCheck}</span>`;
+                }
+
+                if (lastUpdate) {
+                    if (html) html += '<br>';
+                    html += `Dernier changement de contenu : <span class="text-cyan-400 font-medium">${lastUpdate}</span>`;
+                    
+                    if (itemsAdded > 0) {
+                        html += ` <span class="text-emerald-400">(+${itemsAdded})</span>`;
+                        
+                        if (newItems.length > 0) {
+                            html += `<div class="text-xs text-gray-400 mt-2">`;
+                            html += `<details class="group">`;
+                            html += `<summary class="cursor-pointer text-cyan-400 hover:text-cyan-300 list-none">Afficher les nouveaux items</summary>`;
+                            html += `<div class="mt-2 max-h-40 overflow-auto pr-2">`;
+                            html += newItems.map(name => `<div class="text-gray-300">• ${name}</div>`).join('');
+                            html += `</div>`;
+                            html += `</details>`;
+                            html += `</div>`;
+                        }
+                    } else if (lastCheck !== lastUpdate) {
+                        html += ` <span class="text-gray-500 text-xs">(aucun nouvel item)</span>`;
+                    }
+                }
+
+                document.getElementById('lastUpdate').innerHTML = html || 'Date de mise à jour indisponible';
             } catch (e) {
                 console.error(e);
                 alert("Impossible de charger la base de données.");
