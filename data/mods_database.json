@@ -1,9 +1,13 @@
 {
   "metadata": {
-    "last_update": "2026-07-25T21:53:47.589560",
-    "count": 1563,
-    "items_version": "2026-07-13T07:59:50",
-    "last_check": "2026-08-21T03:50:06.713473"
+    "last_update": "2026-08-22T03:41:32.098319",
+    "last_check": "2026-08-22T03:41:32.098319",
+    "count": 1564,
+    "items_added": 1,
+    "new_items": [
+      "Primed Polar Magazine"
+    ],
+    "items_version": "2026-08-21T13:20:37"
   },
   "items": {
     "creeping_bullseye": {
@@ -40146,6 +40150,32 @@
       ],
       "thumb": "items/images/en/thumbs/rhythm_guard.7f4ae2e0a9787960359c4bd712a1efc1.128x128.webp",
       "description": "Passive Augment: Gain 100 Overguard when using an Ability on the Backbeat. Amount doubles up to 1600 per Beat, but resets if the Beat is missed."
+    },
+    "primed_polar_magazine": {
+      "url_name": "primed_polar_magazine",
+      "names": {
+        "en": "Primed Polar Magazine",
+        "fr": "Chargeur Polaire Accru",
+        "de": "Primed Polarmagazin",
+        "es": "Cargador Polar Prime",
+        "it": "Primed Polar Magazine",
+        "pt": "Primed Polar Magazine",
+        "ru": "Полярный Магазин Прайм",
+        "uk": "Праймований Полярний Магазин",
+        "pl": "Polarny Magazynek Prime",
+        "zh-hans": "极地弹仓 Prime",
+        "zh-hant": "極地彈倉 Prime",
+        "ko": "프라임드 폴라 매거진"
+      },
+      "tags": [
+        "legendary",
+        "primary",
+        "mod",
+        "archwing",
+        "archgun"
+      ],
+      "thumb": "items/images/en/thumbs/primed_polar_magazine.a2c3bcc3e7d70de3b2f9e743d93729ff.128x128.webp",
+      "description": "+187% Cold"
     }
   }
 }
