@@ -1,13 +1,13 @@
 {
   "metadata": {
-    "last_update": "2026-08-22T03:41:32.098319",
-    "last_check": "2026-08-24T03:53:56.055486",
-    "count": 1564,
+    "last_update": "2026-08-25T03:48:38.395100",
+    "last_check": "2026-08-25T03:48:38.395100",
+    "count": 1565,
     "items_added": 1,
     "new_items": [
-      "Primed Polar Magazine"
+      "Overpressured Rounds"
     ],
-    "items_version": "2026-08-21T13:20:37"
+    "items_version": "2026-08-25T01:13:23"
   },
   "items": {
     "creeping_bullseye": {
@@ -40176,6 +40176,32 @@
       ],
       "thumb": "items/images/en/thumbs/primed_polar_magazine.a2c3bcc3e7d70de3b2f9e743d93729ff.128x128.webp",
       "description": "+187% Cold"
+    },
+    "overpressured_rounds": {
+      "url_name": "overpressured_rounds",
+      "names": {
+        "en": "Overpressured Rounds",
+        "fr": "Munitions À Surpression",
+        "de": "Überdruck-Geschosse",
+        "es": "Munición De Sobrepresión",
+        "it": "Overpressured Rounds",
+        "pt": "Overpressured Rounds",
+        "ru": "Высокоимпульсные Патроны",
+        "uk": "Надстиснені Набої",
+        "pl": "Pociski Nadciśnieniowe",
+        "zh-hans": "超压弹药",
+        "zh-hant": "超壓彈頭",
+        "ko": "오버프레셔드 라운즈"
+      },
+      "tags": [
+        "mod",
+        "rare",
+        "primary",
+        "efv_5_jupiter"
+      ],
+      "thumb": "items/images/en/thumbs/overpressured_rounds.578775a2eaf23ced8e210a6e81ce16a3.128x128.webp",
+      "description": "Rifle kills add 120% Falloff Distance and decrease Spread for next attack with Buckshot. Buckshot kills restore 50% of the current Magazine.",
+      "wiki_link": "https://wiki.warframe.com/w/Overpressured_Rounds"
     }
   }
 }
