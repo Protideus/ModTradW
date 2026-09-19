@@ -1,8 +1,8 @@
 {
   "metadata": {
     "last_update": "2026-08-25T03:48:38.395100",
-    "last_check": "2026-09-19T07:50:49.761522",
-    "count": 1565,
+    "last_check": "2026-09-19T21:50:43.966145",
+    "count": 1569,
     "items_added": 1,
     "new_items": [
       "Overpressured Rounds"
@@ -40202,6 +40202,116 @@
       "thumb": "items/images/en/thumbs/overpressured_rounds.578775a2eaf23ced8e210a6e81ce16a3.128x128.webp",
       "description": "Rifle kills add 120% Falloff Distance and decrease Spread for next attack with Buckshot. Buckshot kills restore 50% of the current Magazine.",
       "wiki_link": "https://wiki.warframe.com/w/Overpressured_Rounds"
+    },
+    "primed_sure_footed": {
+      "url_name": "primed_sure_footed",
+      "names": {
+        "en": "Primed Sure Footed",
+        "fr": "Bien Chaussé Accru",
+        "de": "Primed Trittsicher",
+        "es": "Pies Firmes Prime",
+        "it": "Primed Sure Footed",
+        "pt": "Primed Sure Footed",
+        "ru": "Уверенная Стойка Прайм",
+        "uk": "Праймована Тверда Постава",
+        "pl": "Stabilna Postawa Prime",
+        "cs": "Primed Sure Footed",
+        "sv": "Primed Sure Footed",
+        "zh-hans": "顶天立地 Prime",
+        "zh-hant": "頂天立地 Prime",
+        "ko": "프라임드 슈어 풋티드"
+      },
+      "description": "+100% Chance to Resist Knockdown",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Sure_Footed",
+      "tags": [
+        "mod",
+        "legendary",
+        "warframe",
+        "exilus",
+        "primed"
+      ]
+    },
+    "primed_vigor": {
+      "url_name": "primed_vigor",
+      "names": {
+        "en": "Primed Vigor",
+        "fr": "Vigueur Accrue",
+        "de": "Primed Lebenskraft",
+        "es": "Vigor Prime",
+        "it": "Primed Vigor",
+        "pt": "Primed Vigor",
+        "ru": "Биоэнергия Прайм",
+        "uk": "Праймована Міць",
+        "pl": "Wigor Prime",
+        "cs": "Primed Vigor",
+        "sv": "Primed Vigor",
+        "zh-hans": "活力 Prime",
+        "zh-hant": "活力 Prime",
+        "ko": "프라임드 비거"
+      },
+      "description": "+75% Shield Capacity\n+75% Health",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Vigor",
+      "tags": [
+        "mod",
+        "legendary",
+        "warframe",
+        "primed"
+      ]
+    },
+    "primed_shred": {
+      "url_name": "primed_shred",
+      "names": {
+        "en": "Primed Shred",
+        "fr": "Charpie Accrue",
+        "de": "Primed Zerfetzen",
+        "es": "Despedazar Prime",
+        "it": "Primed Shred",
+        "pt": "Primed Shred",
+        "ru": "Кромсание Прайм",
+        "uk": "Праймоване Чикриження",
+        "pl": "Rozrywacz Prime",
+        "cs": "Primed Shred",
+        "sv": "Primed Shred",
+        "zh-hans": "撕裂 Prime",
+        "zh-hant": "撕裂 Prime",
+        "ko": "프라임드 슈레드"
+      },
+      "description": "+55% Fire Rate (x2 for Bows)\n+2.2 Punch Through",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Shred",
+      "tags": [
+        "mod",
+        "legendary",
+        "rifle",
+        "primary",
+        "primed"
+      ]
+    },
+    "primed_fury": {
+      "url_name": "primed_fury",
+      "names": {
+        "en": "Primed Fury",
+        "fr": "Furie Accrue",
+        "de": "Primed Raserei",
+        "es": "Furia Prime",
+        "it": "Primed Fury",
+        "pt": "Primed Fury",
+        "ru": "Ярость Прайм",
+        "uk": "Праймована Лють",
+        "pl": "Furia Prime",
+        "cs": "Primed Fury",
+        "sv": "Primed Fury",
+        "zh-hans": "狂暴 Prime",
+        "zh-hant": "狂暴 Prime",
+        "ko": "프라임드 퓨리"
+      },
+      "description": "+55% Attack Speed",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Fury",
+      "tags": [
+        "mod",
+        "legendary",
+        "melee",
+        "primed"
+      ]
     }
   }
 }
