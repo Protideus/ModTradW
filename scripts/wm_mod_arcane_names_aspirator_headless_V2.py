@@ -585,17 +585,23 @@ if __name__ == "__main__":
             print("⚠️ Impossible de récupérer la version de la collection items")
 
         if not version_changed:
-            # Pas de nouveau contenu → on met juste à jour last_check
+            # Pas de nouveau contenu : on vérifie quand même les injections manuelles.
             if DATABASE_PATH.exists():
                 with open(DATABASE_PATH, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                
+
+                items = data.get("items", {})
+                items = add_umbra_mods(items)
+                items = add_login_primed_mods(items)
+
+                data["items"] = items
                 data["metadata"]["last_check"] = now
+                data["metadata"]["count"] = len(items)
                 
                 with open(DATABASE_PATH, 'w', encoding='utf-8') as f:
                     json.dump(data, f, ensure_ascii=False, indent=2)
                 
-                print(f"✅ last_check mis à jour ({now}). Aucun nouveau contenu.")
+                print(f"✅ last_check mis à jour + injections vérifiées.")
                 sys.exit(0)
 
         # === Version a changé → reconstruction complète ===
