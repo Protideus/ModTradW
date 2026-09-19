@@ -434,6 +434,136 @@ def add_umbra_mods(database: Dict) -> Dict:
     
     return database
 
+def add_login_primed_mods(database: Dict) -> Dict:
+    """
+    Injection manuelle des 4 Primed exclusifs aux Daily Tribute
+    (Primed Sure Footed, Primed Vigor, Primed Shred, Primed Fury).
+    Ces mods ne sont pas présents sur Warframe.Market.
+    Noms construits à partir des versions non-primées + patterns observés
+    sur les autres Primed déjà présents dans la base.
+    """
+    print("🛠️ Injection des Primed de login reward (Daily Tribute)...")
+
+    login_mods = [
+        # ------------------------------------------------------------------
+        # Primed Sure Footed
+        # ------------------------------------------------------------------
+        {
+            "url_name": "primed_sure_footed",
+            "names": {
+                "en": "Primed Sure Footed",
+                "fr": "Bien Chaussé Accru",
+                "de": "Primed Trittsicher",
+                "es": "Pies Firmes Prime",
+                "it": "Primed Sure Footed",
+                "pt": "Primed Sure Footed",
+                "ru": "Уверенная Стойка Прайм",
+                "uk": "Праймована Тверда Постава",
+                "pl": "Stabilna Postawa Prime",
+                "cs": "Primed Sure Footed",
+                "sv": "Primed Sure Footed",
+                "zh-hans": "顶天立地 Prime",
+                "zh-hant": "頂天立地 Prime",
+                "ko": "프라임드 슈어 풋티드"
+            },
+            "description": "+100% Chance to Resist Knockdown",
+            "wiki_link": "https://wiki.warframe.com/w/Primed_Sure_Footed",
+            "tags": ["mod", "legendary", "warframe", "exilus", "primed"]
+        },
+
+        # ------------------------------------------------------------------
+        # Primed Vigor
+        # ------------------------------------------------------------------
+        {
+            "url_name": "primed_vigor",
+            "names": {
+                "en": "Primed Vigor",
+                "fr": "Vigueur Accrue",
+                "de": "Primed Lebenskraft",
+                "es": "Vigor Prime",
+                "it": "Primed Vigor",
+                "pt": "Primed Vigor",
+                "ru": "Биоэнергия Прайм",
+                "uk": "Праймована Міць",
+                "pl": "Wigor Prime",
+                "cs": "Primed Vigor",
+                "sv": "Primed Vigor",
+                "zh-hans": "活力 Prime",
+                "zh-hant": "活力 Prime",
+                "ko": "프라임드 비거"
+            },
+            "description": "+75% Shield Capacity\n+75% Health",
+            "wiki_link": "https://wiki.warframe.com/w/Primed_Vigor",
+            "tags": ["mod", "legendary", "warframe", "primed"]
+        },
+
+        # ------------------------------------------------------------------
+        # Primed Shred
+        # ------------------------------------------------------------------
+        {
+            "url_name": "primed_shred",
+            "names": {
+                "en": "Primed Shred",
+                "fr": "Charpie Accrue",
+                "de": "Primed Zerfetzen",
+                "es": "Despedazar Prime",
+                "it": "Primed Shred",
+                "pt": "Primed Shred",
+                "ru": "Кромсание Прайм",
+                "uk": "Праймоване Чикриження",
+                "pl": "Rozrywacz Prime",
+                "cs": "Primed Shred",
+                "sv": "Primed Shred",
+                "zh-hans": "撕裂 Prime",
+                "zh-hant": "撕裂 Prime",
+                "ko": "프라임드 슈레드"
+            },
+            "description": "+55% Fire Rate (x2 for Bows)\n+2.2 Punch Through",
+            "wiki_link": "https://wiki.warframe.com/w/Primed_Shred",
+            "tags": ["mod", "legendary", "rifle", "primary", "primed"]
+        },
+
+        # ------------------------------------------------------------------
+        # Primed Fury
+        # ------------------------------------------------------------------
+        {
+            "url_name": "primed_fury",
+            "names": {
+                "en": "Primed Fury",
+                "fr": "Furie Accrue",
+                "de": "Primed Raserei",
+                "es": "Furia Prime",
+                "it": "Primed Fury",
+                "pt": "Primed Fury",
+                "ru": "Ярость Прайм",
+                "uk": "Праймована Лють",
+                "pl": "Furia Prime",
+                "cs": "Primed Fury",
+                "sv": "Primed Fury",
+                "zh-hans": "狂暴 Prime",
+                "zh-hant": "狂暴 Prime",
+                "ko": "프라임드 퓨리"
+            },
+            "description": "+55% Attack Speed",
+            "wiki_link": "https://wiki.warframe.com/w/Primed_Fury",
+            "tags": ["mod", "legendary", "melee", "primed"]
+        },
+    ]
+
+    added = 0
+    for mod in login_mods:
+        slug = mod["url_name"]
+        if slug not in database:
+            database[slug] = mod
+            added += 1
+            print(f"  + {mod['names']['en']}")
+        else:
+            # On met à jour au cas où (noms / description)
+            database[slug].update(mod)
+
+    print(f"✅ {added} Primed de login injectés / mis à jour.")
+    return database
+
 if __name__ == "__main__":
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     BLACKLIST_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -485,6 +615,7 @@ if __name__ == "__main__":
 
         final_items = build_database()
         final_items = add_umbra_mods(final_items)
+        final_items = add_login_primed_mods(final_items)
         
         # Calcul des nouveaux items
         new_item_keys = [k for k in final_items.keys() if k not in old_items]
