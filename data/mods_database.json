@@ -1,13 +1,17 @@
 {
   "metadata": {
-    "last_update": "2026-08-25T03:48:38.395100",
-    "last_check": "2026-09-23T08:19:37.476669",
-    "count": 1569,
-    "items_added": 1,
+    "last_update": "2026-09-24T08:11:07.772718",
+    "last_check": "2026-09-24T08:11:07.772718",
+    "count": 1574,
+    "items_added": 5,
     "new_items": [
-      "Overpressured Rounds"
+      "Brood's Oversurge",
+      "Cold Front",
+      "Gastroparesis",
+      "Infernum",
+      "Prototype Shock Coils"
     ],
-    "items_version": "2026-08-25T01:13:23"
+    "items_version": "2026-09-23T16:02:00"
   },
   "items": {
     "creeping_bullseye": {
@@ -40312,6 +40316,136 @@
         "melee",
         "primed"
       ]
+    },
+    "prototype_shock_coils": {
+      "url_name": "prototype_shock_coils",
+      "names": {
+        "en": "Prototype Shock Coils",
+        "fr": "Prototype D'Électrobobines",
+        "de": "Prototyp-Stoßdämpfer",
+        "es": "Prototipo De Electrobobinas",
+        "it": "Prototype Shock Coils",
+        "pt": "Prototype Shock Coils",
+        "ru": "Прототипные Электрокатушки",
+        "uk": "Прототипні Електрокотушки",
+        "pl": "Prototypowe Elektrocewki",
+        "zh-hans": "原型电击线圈",
+        "zh-hant": "原型電圈",
+        "ko": "프로토타입 쇼크 코일"
+      },
+      "tags": [
+        "mod",
+        "rare",
+        "secondary",
+        "efv_8_mars"
+      ],
+      "thumb": "items/images/en/thumbs/prototype_shock_coils.d3902a8a313a82b474762be56e47e4f0.128x128.webp",
+      "description": "Adds +90% Electric damage, and shots have a 20% base chance to apply extra Electric status independent of modded damage types.",
+      "wiki_link": "https://wiki.warframe.com/w/Prototype_Shock_Coils"
+    },
+    "broods_oversurge": {
+      "url_name": "broods_oversurge",
+      "names": {
+        "en": "Brood's Oversurge",
+        "fr": "Surcharge De La Couvée",
+        "de": "Bruts Überwelle",
+        "es": "Sobrecarga De Progenie",
+        "it": "Brood's Oversurge",
+        "pt": "Sobrecarga Da Ninhada",
+        "ru": "Brood's Oversurge",
+        "uk": "Brood's Oversurge",
+        "pl": "Przeciążenie Miotu",
+        "zh-hans": "毒裔之涌",
+        "zh-hant": "蛛寶超湧",
+        "ko": "브루드 오버서지"
+      },
+      "tags": [
+        "oraxia",
+        "warframe",
+        "rare",
+        "augment",
+        "mod"
+      ],
+      "thumb": "items/images/en/thumbs/broods_oversurge.11aa9d5aff1b6af780fd7f9726eba809.128x128.webp",
+      "description": "Widow's Brood Augment: Scuttlers are galvanized with Electricity. Hold to direct all active Scuttlers at the aimed target, inflicting 2000 Electricity Damage and Status Effect in a radius."
+    },
+    "infernum": {
+      "url_name": "infernum",
+      "names": {
+        "en": "Infernum",
+        "fr": "Infernum",
+        "de": "Infernum",
+        "es": "Infernum",
+        "it": "Infernum",
+        "pt": "Infernum",
+        "ru": "Infernum",
+        "uk": "Infernum",
+        "pl": "Infernum",
+        "zh-hans": "炼狱",
+        "zh-hant": "獄術",
+        "ko": "인페르넘"
+      },
+      "tags": [
+        "warframe",
+        "rare",
+        "augment",
+        "uriel",
+        "mod"
+      ],
+      "thumb": "items/images/en/thumbs/infernum.1a6915c36a5c84ca2c651b9b6da0dcb8.128x128.webp",
+      "description": "Infernalis Augment: Release Fireballs for 1500Heat Damage with larger volleys when grabbing Vythelas' Runes during flight. Hits from Fireballs slowly charge Brimstone.",
+      "wiki_link": "https://wiki.warframe.com/w/Infernum"
+    },
+    "cold_front": {
+      "url_name": "cold_front",
+      "names": {
+        "en": "Cold Front",
+        "fr": "Front Polaire",
+        "de": "Kaltfront",
+        "es": "Frente Frío",
+        "it": "Cold Front",
+        "pt": "Frente Fria",
+        "ru": "Cold Front",
+        "uk": "Cold Front",
+        "pl": "Chłodny Front",
+        "zh-hans": "冷锋护罩",
+        "zh-hant": "冷鋒護罩",
+        "ko": "콜드 프론트"
+      },
+      "tags": [
+        "mod",
+        "rare",
+        "warframe",
+        "frost"
+      ],
+      "thumb": "items/images/en/thumbs/cold_front.6c870d3c18d4341ee489281c4915acb4.128x128.webp",
+      "description": "Snow Globe Augment: Snow Globe is now attached to Frost with a smaller radius while increasing your mobility. Kills on frozen enemies increase the Globe health by 4% per kill."
+    },
+    "gastroparesis": {
+      "url_name": "gastroparesis",
+      "names": {
+        "en": "Gastroparesis",
+        "fr": "Gastroparésie",
+        "de": "Gastroparese",
+        "es": "Gastroparesia",
+        "it": "Gastroparesis",
+        "pt": "Gastroparesia",
+        "ru": "Gastroparesis",
+        "uk": "Gastroparesis",
+        "pl": "Gastropareza",
+        "zh-hans": "胃无力",
+        "zh-hant": "胃輕癱",
+        "ko": "Gastroparesis"
+      },
+      "tags": [
+        "warframe",
+        "grendel",
+        "rare",
+        "augment",
+        "mod"
+      ],
+      "thumb": "items/images/en/thumbs/gastroparesis.ded839cab6ca68e2bdef4146ec43e065.128x128.webp",
+      "description": "Passive Augment: Each enemy consumed adds 15% Extra Gas Damage to Primary and Secondary Weapons."
     }
   }
 }
