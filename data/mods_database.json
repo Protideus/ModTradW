@@ -1,17 +1,11 @@
 {
   "metadata": {
-    "last_update": "2026-09-24T08:11:07.772718",
-    "last_check": "2026-09-25T08:34:23.980028",
+    "last_update": "2026-09-26T08:21:27.035092",
+    "last_check": "2026-09-26T08:21:27.035092",
     "count": 1574,
-    "items_added": 5,
-    "new_items": [
-      "Brood's Oversurge",
-      "Cold Front",
-      "Gastroparesis",
-      "Infernum",
-      "Prototype Shock Coils"
-    ],
-    "items_version": "2026-09-23T16:02:00"
+    "items_added": 0,
+    "new_items": [],
+    "items_version": "2026-09-26T03:34:14"
   },
   "items": {
     "creeping_bullseye": {
