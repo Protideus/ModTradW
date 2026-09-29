@@ -1,11 +1,43 @@
 {
   "metadata": {
-    "last_update": "2026-09-28T09:25:43.390221",
-    "last_check": "2026-09-28T09:25:43.390221",
-    "count": 1574,
-    "items_added": 0,
-    "new_items": [],
-    "items_version": "2026-09-27T20:26:15"
+    "last_update": "2026-09-29T09:30:47.899126",
+    "last_check": "2026-09-29T09:30:47.899126",
+    "count": 1605,
+    "items_added": 31,
+    "new_items": [
+      "Archgun Riven Mod (Veiled)",
+      "Bane Of Orokin",
+      "Cleanse Orokin",
+      "Companion Weapon Riven Mod (Veiled)",
+      "Enduring Bastille",
+      "Equilibrium (Steam Pinnacle Pack)",
+      "Expel Orokin",
+      "Fear Sense",
+      "Gaseous Quake",
+      "Kitgun Riven Mod (Veiled)",
+      "Melee Riven Mod (Veiled)",
+      "Negation Armor",
+      "Pistol Riven Mod (Veiled)",
+      "Primed Bane Of Orokin",
+      "Primed Cleanse Orokin",
+      "Primed Expel Orokin",
+      "Primed Smite Orokin",
+      "Rifle Riven Mod (Veiled)",
+      "Scan Aquatic Lifeforms",
+      "Semi-Shotgun Cannonade",
+      "Shotgun Riven Mod (Veiled)",
+      "Smite Orokin",
+      "Sonic Siphon",
+      "Summoner's Wrath",
+      "Teleport Rush",
+      "Zaw Riven Mod (Veiled)",
+      "Zid-an Asheir",
+      "Zid-an Haras",
+      "Zid-an Osbok",
+      "Zid-an Sek-eel",
+      "Zid-an Uskos"
+    ],
+    "items_version": "2026-09-28T16:09:39"
   },
   "items": {
     "creeping_bullseye": {
@@ -40440,6 +40472,785 @@
       ],
       "thumb": "items/images/en/thumbs/gastroparesis.ded839cab6ca68e2bdef4146ec43e065.128x128.webp",
       "description": "Passive Augment: Each enemy consumed adds 15% Extra Gas Damage to Primary and Secondary Weapons."
+    },
+    "cleanse_orokin": {
+      "url_name": "cleanse_orokin",
+      "names": {
+        "en": "Cleanse Orokin",
+        "fr": "Purifie-Orokins",
+        "de": "Läuterung Der Orokin",
+        "es": "Limpieza De Orokin",
+        "it": "Cleanse Orokin",
+        "pt": "Cleanse Orokin",
+        "ru": "Зачистка: Орокин",
+        "uk": "Зачистка Орокінів",
+        "pl": "Czystka Orokin",
+        "zh-hans": "净化奥罗金",
+        "zh-hant": "淨化 Orokin",
+        "ko": "클렌즈 오로킨"
+      },
+      "tags": [
+        "shotgun",
+        "mod",
+        "primary",
+        "uncommon"
+      ],
+      "thumb": "items/images/en/thumbs/cleanse_corrupted.a562d521f3249d48052aed5c64d66ec8.128x128.webp",
+      "description": "x1.3 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Cleanse_Orokin"
+    },
+    "kitgun_riven_mod_veiled": {
+      "url_name": "kitgun_riven_mod_veiled",
+      "names": {
+        "en": "Kitgun Riven Mod (Veiled)",
+        "fr": "Mod Riven De Kitgun (Veiled)",
+        "de": "Kitgun Riven-Mod (Veiled)",
+        "es": "Mod Agrietado De Kitgun (Velado)",
+        "it": "Riven Mod Kitgun (Veiled)",
+        "pt": "Mod Riven: Kitgun (Oculto)",
+        "ru": "Мод Разлома Для Китганов (Закрытый)",
+        "uk": "Модифікатор Розколу Для Складострілів (прихований)",
+        "pl": "Mod Riven Kitgun (Ukryty)",
+        "zh-hans": "组合枪裂罅 Mod （尚未揭开）",
+        "zh-hant": "組合槍裂罅 MOD （尚未揭開）",
+        "ko": "키트건 리벤 모드 (미해금)"
+      },
+      "tags": [
+        "mod",
+        "riven_mod",
+        "common",
+        "veiled_riven"
+      ],
+      "thumb": "items/images/en/thumbs/kitgun_riven_mod_(veiled).c7cc9acb1a595ed66744e1d2b4f3bb42.128x128.png",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "smite_orokin": {
+      "url_name": "smite_orokin",
+      "names": {
+        "en": "Smite Orokin",
+        "fr": "Châtie-Orokins",
+        "de": "Peinigung Der Orokin",
+        "es": "Castiga Orokin",
+        "it": "Smite Orokin",
+        "pt": "Smite Orokin",
+        "ru": "Крушитель: Орокин",
+        "uk": "Вирізання Орокінів",
+        "pl": "Rozpruwacz Orokin",
+        "zh-hans": "毁灭奥罗金",
+        "zh-hant": "毀滅 Orokin",
+        "ko": "스마이트 오로킨"
+      },
+      "tags": [
+        "mod",
+        "melee",
+        "uncommon"
+      ],
+      "thumb": "items/images/en/thumbs/smite_corrupted.cefa9597594ba4ec17dc9c050673390e.128x128.webp",
+      "description": "x1.3 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Smite_Orokin"
+    },
+    "primed_expel_orokin": {
+      "url_name": "primed_expel_orokin",
+      "names": {
+        "en": "Primed Expel Orokin",
+        "fr": "Expulse-Orokins Accru",
+        "de": "Primed Verbannung Der Orokin",
+        "es": "Expeler Orokin Prime",
+        "it": "Primed Expel Orokin",
+        "pt": "Primed Expel Orokin",
+        "ru": "Изгнание Прайм: Орокин",
+        "uk": "Праймований Відстріл Орокінів",
+        "pl": "Zagłada Orokin Prime",
+        "zh-hans": "驱逐奥罗金 Prime",
+        "zh-hant": "驅逐 Orokin Prime",
+        "ko": "프라임드 익스펠 오로킨"
+      },
+      "tags": [
+        "mod",
+        "legendary",
+        "secondary",
+        "pistol"
+      ],
+      "thumb": "items/images/en/thumbs/primed_expel_corrupted.25ce16c0bf9bb56ad4223694c7ffe660.128x128.webp",
+      "description": "x1.55 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Expel_Orokin"
+    },
+    "zaw_riven_mod_veiled": {
+      "url_name": "zaw_riven_mod_veiled",
+      "names": {
+        "en": "Zaw Riven Mod (Veiled)",
+        "fr": "Mod Riven De Zaw (Veiled)",
+        "de": "Zaw Riven-Mod (Veiled)",
+        "es": "Mod Agrietado De Zaw (Velado)",
+        "it": "Riven Mod Zaw (Veiled)",
+        "pt": "Mod Riven: Zaw (Oculto)",
+        "ru": "Мод Разлома Для Зо (Закрытый)",
+        "uk": "Модифікатор Розколу Для Зо (прихований)",
+        "pl": "Mod Riven Zaw (Ukryty)",
+        "zh-hans": "Zaw 裂罅 Mod （尚未揭开）",
+        "zh-hant": "Zaw 裂罅 MOD （尚未揭開）",
+        "ko": "조우 리벤 모드 (미해금)"
+      },
+      "tags": [
+        "mod",
+        "riven_mod",
+        "common",
+        "veiled_riven"
+      ],
+      "thumb": "items/images/en/thumbs/zaw_riven_mod_(veiled).8a8a788f0090d5be1b32481765ab8ad3.128x128.png",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "negation_armor": {
+      "url_name": "negation_armor",
+      "names": {
+        "en": "Negation Armor",
+        "fr": "Armure Réfléchissante",
+        "de": "Negierende Rüstung",
+        "es": "Armadura De Negación",
+        "it": "Negation Armor",
+        "pt": "Escaravelhos Revitalizantes",
+        "ru": "Инверсионная Броня",
+        "uk": "Ігнорування Захисту",
+        "pl": "Pancerz Negacji",
+        "zh-hans": "不绝护甲",
+        "zh-hant": "抵死護甲",
+        "ko": "니게이션 아머"
+      },
+      "tags": [
+        "mod",
+        "warframe",
+        "rare",
+        "augment",
+        "inaros"
+      ],
+      "thumb": "items/images/en/thumbs/negation_swarm.e1b8202db63de79de282659edeb1d120.128x128.webp",
+      "description": "Scarab Shell Augment: When Inaros takes fatal damage, he consumes Scarab Shell to heal with a brief invulnerability that ends with a deadly Slash Status Effect. Cooldown 30s.",
+      "wiki_link": "https://wiki.warframe.com/w/Negation_Armor"
+    },
+    "fear_sense": {
+      "url_name": "fear_sense",
+      "names": {
+        "en": "Fear Sense",
+        "fr": "Perception De La Peur",
+        "de": "Angstgespür",
+        "es": "Sentido Del Miedo",
+        "it": "Fear Sense",
+        "pt": "Fear Sense",
+        "ru": "Чутьё Страха",
+        "uk": "Чуття Страху",
+        "pl": "Wyczucie Strachu",
+        "zh-hans": "恐惧感知",
+        "zh-hant": "恐懼感應",
+        "ko": "피어 센스"
+      },
+      "tags": [
+        "mod",
+        "kavat",
+        "uncommon"
+      ],
+      "thumb": "items/images/en/thumbs/sense_danger.6b3d62183a716b79dea1eaefb2a47320.128x128.webp",
+      "description": "The Kavat senses the weaknesses of enemies within 25m. For 25s, its attacks deal +200% damage and stagger with a 30% chance of knockdown.",
+      "wiki_link": "https://wiki.warframe.com/w/Fear_Sense"
+    },
+    "scan_aquatic_lifeforms": {
+      "url_name": "scan_aquatic_lifeforms",
+      "names": {
+        "en": "Scan Aquatic Lifeforms",
+        "fr": "Détecteur Formes de vie Aquatiques",
+        "de": "Scan Aquatic Lifeforms",
+        "es": "Escanea formas de vida acuáticas",
+        "it": "Scan Aquatic Lifeforms",
+        "pt": "Scan Aquatic Lifeforms",
+        "ru": "Сканирование Форм Жизни",
+        "uk": "Шукач водних істот",
+        "pl": "Scan Aquatic Lifeforms",
+        "zh-hans": "扫描水生生命体",
+        "zh-hant": "掃描水生生命體",
+        "ko": "스캔 라이프폼"
+      },
+      "tags": [
+        "mod"
+      ],
+      "thumb": "items/images/en/thumbs/scan_lifeforms.ec5b135dbfe456bf9d4e8aa1b956b6f5.128x128.webp",
+      "description": "Scan Lifeforms is a Mod that allows Oxylus to show Fishing Hotspots and apply Luminos Dye on nearby fish.",
+      "wiki_link": "https://wiki.warframe.com/w/Scan_Aquatic_Lifeforms"
+    },
+    "melee_riven_mod_veiled": {
+      "url_name": "melee_riven_mod_veiled",
+      "names": {
+        "en": "Melee Riven Mod (Veiled)",
+        "fr": "Mod Riven De Mêlée (Veiled)",
+        "de": "Nahkampf Riven-Mod (Veiled)",
+        "es": "Mod Agrietado De Cuerpo A Cuerpo (Velado)",
+        "it": "Riven Mod Corpo A Corpo (Veiled)",
+        "pt": "Mod Riven: Corpo A Corpo (Oculto)",
+        "ru": "Мод Разлома Для Оружия Ближнего Боя (Закрытый)",
+        "uk": "Модифікатор Розколу Для Холодної Зброї (прихований)",
+        "pl": "Mod Riven Broni Białej (Ukryty)",
+        "zh-hans": "近战裂罅 Mod （尚未揭开）",
+        "zh-hant": "近戰裂罅 MOD （尚未揭開）",
+        "ko": "근접 무기 리벤 모드 (미해금)"
+      },
+      "tags": [
+        "mod",
+        "riven_mod",
+        "common",
+        "veiled_riven"
+      ],
+      "thumb": "items/images/en/thumbs/melee_riven_mod_(veiled).a04511643f40ae463121e146f7327d4b.128x128.webp",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "pistol_riven_mod_veiled": {
+      "url_name": "pistol_riven_mod_veiled",
+      "names": {
+        "en": "Pistol Riven Mod (Veiled)",
+        "fr": "Mod Riven De Pistolet (Veiled)",
+        "de": "Pistolen Riven-Mod (Veiled)",
+        "es": "Mod Agrietado De Pistola (Velado)",
+        "it": "Riven Mod Pistola (Veiled)",
+        "pt": "Mod Riven: Pistola (Oculto)",
+        "ru": "Мод Разлома Для Пистолетов (Закрытый)",
+        "uk": "Модифікатор Розколу Для Пістолетів (прихований)",
+        "pl": "Mod Riven Pistoletu (Ukryty)",
+        "zh-hans": "手枪裂罅 Mod （尚未揭开）",
+        "zh-hant": "手槍裂罅 MOD （尚未揭開）",
+        "ko": "보조 무기 리벤 모드 (미해금)"
+      },
+      "tags": [
+        "mod",
+        "riven_mod",
+        "common",
+        "veiled_riven"
+      ],
+      "thumb": "items/images/en/thumbs/pistol_riven_mod_(veiled).a04511643f40ae463121e146f7327d4b.128x128.webp",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "sonic_siphon": {
+      "url_name": "sonic_siphon",
+      "names": {
+        "en": "Sonic Siphon",
+        "fr": "Siphon Sonique",
+        "de": "Schallsiphon",
+        "es": "Sifón Sónico",
+        "it": "Sonic Siphon",
+        "pt": "Sifão Sônico",
+        "ru": "Акустический Разрыв",
+        "uk": "Звуковий Розлом",
+        "pl": "Soniczny Syfon",
+        "zh-hans": "音波虹吸",
+        "zh-hant": "音噬",
+        "ko": "소닉 사이펀"
+      },
+      "tags": [
+        "mod",
+        "warframe",
+        "banshee",
+        "augment",
+        "rare"
+      ],
+      "thumb": "items/images/en/thumbs/sonic_fracture.c3de0ffb78690e9538b7ae3accc2f335.128x128.webp",
+      "description": "Sonic Boom Augment: Gain Armor for each enemy hit by Sonic Boom for 20s.",
+      "wiki_link": "https://wiki.warframe.com/w/Sonic_Siphon"
+    },
+    "expel_orokin": {
+      "url_name": "expel_orokin",
+      "names": {
+        "en": "Expel Orokin",
+        "fr": "Expulse-Orokins",
+        "de": "Verbannung Der Orokin",
+        "es": "Expeler Orokin",
+        "it": "Expel Orokin",
+        "pt": "Expel Orokin",
+        "ru": "Изгнание: Орокин",
+        "uk": "Відстріл Орокінів",
+        "pl": "Zagłada Orokin",
+        "zh-hans": "驱逐奥罗金",
+        "zh-hant": "驅逐 Orokin",
+        "ko": "익스펠 오로킨"
+      },
+      "tags": [
+        "mod",
+        "pistol",
+        "secondary",
+        "uncommon"
+      ],
+      "thumb": "items/images/en/thumbs/expel_corrupted.9b33f5ab7e3da1d99b92ee934448e071.128x128.webp",
+      "description": "x1.3 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Expel_Orokin"
+    },
+    "archgun_riven_mod_veiled": {
+      "url_name": "archgun_riven_mod_veiled",
+      "names": {
+        "en": "Archgun Riven Mod (Veiled)",
+        "fr": "Mod Riven D'Arch-Fusil (Veiled)",
+        "de": "Arch-Gewehr Riven-Mod (Veiled)",
+        "es": "Mod Agrietado De Archcañón (Velado)",
+        "it": "Riven Mod Archgun (Veiled)",
+        "pt": "Mod Riven: Arch-Arma (Oculto)",
+        "ru": "Мод Разлома Для Оружия Арчвинга (Закрытый)",
+        "uk": "Модифікатор Розколу Для Арк-Гармат (прихований)",
+        "pl": "Mod Riven Archgun (Ukryty)",
+        "zh-hans": "曲翼枪械裂罅 Mod （尚未揭开）",
+        "zh-hant": "ARCHWING 槍械裂罅 MOD （尚未揭開）",
+        "ko": "아크윙 총기 리벤 모드 (미해금)"
+      },
+      "tags": [
+        "mod",
+        "riven_mod",
+        "common",
+        "veiled_riven"
+      ],
+      "thumb": "items/images/en/thumbs/archgun_riven_mod_(veiled).a04511643f40ae463121e146f7327d4b.128x128.webp",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "gaseous_quake": {
+      "url_name": "gaseous_quake",
+      "names": {
+        "en": "Gaseous Quake",
+        "fr": "Séisme Gazeux",
+        "de": "Gas-Beben",
+        "es": "Terremoto Gaseoso",
+        "it": "Gaseous Quake",
+        "pt": "Terremoto Gasoso",
+        "ru": "Резонирующий Взрыв",
+        "uk": "Резонансний Поштовх",
+        "pl": "Gazowy Wstrząs",
+        "zh-hans": "气体地震",
+        "zh-hant": "氣體衝擊",
+        "ko": "가시어스 퀘이크"
+      },
+      "tags": [
+        "mod",
+        "warframe",
+        "banshee",
+        "augment",
+        "rare"
+      ],
+      "thumb": "items/images/en/thumbs/resonating_quake.6000a3e46f97193a2acffdfd7ba15290.128x128.webp",
+      "description": "Sound Quake Augment: Channel Gas Damage and Status Effect leaks with a 2.75x Damage Multiplier that increases every second on enemies in your sight.",
+      "wiki_link": "https://wiki.warframe.com/w/Gaseous_Quake"
+    },
+    "primed_bane_of_orokin": {
+      "url_name": "primed_bane_of_orokin",
+      "names": {
+        "en": "Primed Bane Of Orokin",
+        "fr": "Fléau Des Orokins Accru",
+        "de": "Primed Verderben Der Orokin",
+        "es": "Perdición De Los Orokin Prime",
+        "it": "Primed Bane Of Orokin",
+        "pt": "Primed Bane Of Orokin",
+        "ru": "Погибель Прайм: Орокин",
+        "uk": "Праймована Погибель Орокінів",
+        "pl": "Zguba Orokin Prime",
+        "zh-hans": "灭亡奥罗金 Prime",
+        "zh-hant": "滅亡 Orokin Prime",
+        "ko": "프라임드 베인 오브 오로킨"
+      },
+      "tags": [
+        "mod",
+        "rifle",
+        "primary",
+        "legendary"
+      ],
+      "thumb": "items/images/en/thumbs/primed_bane_of_corrupted.31ac8d4b245af9292efbaaf77747eb2e.128x128.webp",
+      "description": "x1.55 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Bane_of_Orokin"
+    },
+    "enduring_bastille": {
+      "url_name": "enduring_bastille",
+      "names": {
+        "en": "Enduring Bastille",
+        "fr": "Bastille Endurante",
+        "de": "Beständige Bastille",
+        "es": "Bastilla Duradera",
+        "it": "Enduring Bastille",
+        "pt": "Bastilha Duradoura",
+        "ru": "Несокрушимая Бастилия",
+        "uk": "Тривка Бастилія",
+        "pl": "Trwająca Bastylia",
+        "zh-hans": "永续力场",
+        "zh-hant": "持久牢獄",
+        "ko": "엔듀어링 바스티유"
+      },
+      "tags": [
+        "vauban",
+        "mod",
+        "warframe",
+        "augment",
+        "rare"
+      ],
+      "thumb": "items/images/en/thumbs/repelling_bastille.82fe9571cd0c82d259238a5ecb3a7c4d.128x128.webp",
+      "description": "Bastille Augment: Killing an enemy in Bastille extends the duration by 2s. Vortex's duration is increased by 70% of its Maximum Duration for each additional Vortex thrown into it.",
+      "wiki_link": "https://wiki.warframe.com/w/Enduring_Bastille"
+    },
+    "shotgun_riven_mod_veiled": {
+      "url_name": "shotgun_riven_mod_veiled",
+      "names": {
+        "en": "Shotgun Riven Mod (Veiled)",
+        "fr": "Mod Riven De Fusil À Pompe (Veiled)",
+        "de": "Schrotgewehr Riven-Mod (Veiled)",
+        "es": "Mod Agrietado De Escopeta (Velado)",
+        "it": "Riven Mod Fucile A Pompa (Veiled)",
+        "pt": "Mod Riven: Escopeta (Oculto)",
+        "ru": "Мод Разлома Для Дробовиков (Закрытый)",
+        "uk": "Модифікатор Розколу Для Рушниць (прихований)",
+        "pl": "Mod Riven Strzelby (Ukryty)",
+        "zh-hans": "霰弹枪裂罅 Mod （尚未揭开）",
+        "zh-hant": "霰彈槍裂罅 MOD （尚未揭開）",
+        "ko": "산탄총 리벤 모드 (미해금)"
+      },
+      "tags": [
+        "mod",
+        "riven_mod",
+        "common",
+        "veiled_riven"
+      ],
+      "thumb": "items/images/en/thumbs/shotgun_riven_mod_(veiled).a04511643f40ae463121e146f7327d4b.128x128.webp",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "rifle_riven_mod_veiled": {
+      "url_name": "rifle_riven_mod_veiled",
+      "names": {
+        "en": "Rifle Riven Mod (Veiled)",
+        "fr": "Mod Riven De Fusil (Veiled)",
+        "de": "Gewehr Riven-Mod (Veiled)",
+        "es": "Mod Agrietado De Rifle (Velado)",
+        "it": "Riven Mod Fucile (Veiled)",
+        "pt": "Mod Riven: Rifle (Oculto)",
+        "ru": "Мод Разлома Для Винтовок (Закрытый)",
+        "uk": "Модифікатор Розколу Для Гвинтівок (прихований)",
+        "pl": "Mod Riven Karabinu (Ukryty)",
+        "zh-hans": "步枪裂罅 Mod （尚未揭开）",
+        "zh-hant": "步槍裂罅 MOD （尚未揭開）",
+        "ko": "소총 리벤 모드 (미해금)"
+      },
+      "tags": [
+        "mod",
+        "riven_mod",
+        "common",
+        "veiled_riven"
+      ],
+      "thumb": "items/images/en/thumbs/rifle_riven_mod_(veiled).efa7515ed4b28b90fcde3b230701034b.128x128.png",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "primed_cleanse_orokin": {
+      "url_name": "primed_cleanse_orokin",
+      "names": {
+        "en": "Primed Cleanse Orokin",
+        "fr": "Purifie-Orokins Accru",
+        "de": "Primed Orokin Läutern",
+        "es": "Limpieza De Orokin Prime",
+        "it": "Primed Cleanse Orokin",
+        "pt": "Primed Cleanse Orokin",
+        "ru": "Зачистка Прайм: Орокин",
+        "uk": "Праймована Зачистка Орокінів",
+        "pl": "Czystka Orokin Prime",
+        "zh-hans": "净化奥罗金 Prime",
+        "zh-hant": "淨化 Orokin Prime",
+        "ko": "프라임드 클렌즈 오로킨"
+      },
+      "tags": [
+        "mod",
+        "legendary",
+        "primary",
+        "shotgun"
+      ],
+      "thumb": "items/images/en/thumbs/primed_cleanse_corrupted.9d332439da9f0e1e5569910724c25a82.128x128.webp",
+      "description": "x1.55 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Cleanse_Orokin"
+    },
+    "bane_of_orokin": {
+      "url_name": "bane_of_orokin",
+      "names": {
+        "en": "Bane Of Orokin",
+        "fr": "Fléau Des Orokins",
+        "de": "Verderben Der Orokin",
+        "es": "Perdición De Los Orokin",
+        "it": "Bane Of Orokin",
+        "pt": "Bane Of Orokin",
+        "ru": "Погибель: Орокин",
+        "uk": "Погибель Орокінів",
+        "pl": "Zguba Orokin",
+        "zh-hans": "灭亡奥罗金",
+        "zh-hant": "滅亡 Orokin",
+        "ko": "베인 오브 오로킨"
+      },
+      "tags": [
+        "mod",
+        "rifle",
+        "primary",
+        "uncommon"
+      ],
+      "thumb": "items/images/en/thumbs/bane_of_corrupted.4484255547dd3dd824c3c844f31557ee.128x128.webp",
+      "description": "x1.3 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Bane_of_Orokin"
+    },
+    "teleport_rush": {
+      "url_name": "teleport_rush",
+      "names": {
+        "en": "Teleport Rush",
+        "fr": "Téléportation Rapide",
+        "de": "Teleport-Rausch",
+        "es": "Teletransportación Rápida",
+        "it": "Teleport Rush",
+        "pt": "Teleporte Célere",
+        "ru": "Телепортационный Рывок",
+        "uk": "Квапливе Переміщення",
+        "pl": "Pęd Teleportacji",
+        "zh-hans": "闪现急袭",
+        "zh-hant": "瞬移斬殺",
+        "ko": "텔레포트 러쉬"
+      },
+      "tags": [
+        "mod",
+        "warframe",
+        "rare",
+        "augment",
+        "ash"
+      ],
+      "thumb": "items/images/en/thumbs/fatal_teleport.cdced565853bdd09dfee90954d91aa3f.128x128.webp",
+      "description": "Teleport Augment: Using Teleport increases Parkour Velocity by 30% for 12s. Executing a target with Teleport extends Smoke Screen's duration by 5s. Teleport Mercy Kills fully refresh the duration.",
+      "wiki_link": "https://wiki.warframe.com/w/Teleport_Rush"
+    },
+    "companion_weapon_riven_mod_veiled": {
+      "url_name": "companion_weapon_riven_mod_veiled",
+      "names": {
+        "en": "Companion Weapon Riven Mod (Veiled)",
+        "fr": "Mod riven d'arme de compagnon",
+        "de": "Companion Weapon Riven Mod (Veiled)",
+        "es": "Agrietado de arma para compañero (Velado)",
+        "it": "Companion Weapon Riven Mod (Veiled)",
+        "pt": "Companion Weapon Riven Mod (Veiled)",
+        "ru": "Мод Разлома Для Оружия Компаньона (Закрытый)",
+        "uk": "Модифікатор розколу для зброї супутників (закритий)",
+        "pl": "Companion Weapon Riven Mod (Veiled)",
+        "zh-hans": "同伴武器裂罅 Mod (尚未揭开)",
+        "zh-hant": "夥伴武器裂罅 Mod （尚未揭開）",
+        "ko": "동반자 무기 리벤 모드 (미개봉)"
+      },
+      "tags": [
+        "mod",
+        "riven"
+      ],
+      "thumb": "items/images/en/thumbs/companion_weapon_riven_mod_(veiled).43633261c8ac6836608f58b37f8c9eaa.128x128.webp",
+      "description": "For Companions",
+      "wiki_link": "https://wiki.warframe.com/w/Riven_Mods"
+    },
+    "primed_smite_orokin": {
+      "url_name": "primed_smite_orokin",
+      "names": {
+        "en": "Primed Smite Orokin",
+        "fr": "Châtie-Orokins Accru",
+        "de": "Primed Peinigung Der Orokin",
+        "es": "Castiga Orokin Prime",
+        "it": "Primed Smite Orokin",
+        "pt": "Primed Smite Orokin",
+        "ru": "Крушитель Прайм: Орокин",
+        "uk": "Праймоване Вирізання Орокінів",
+        "pl": "Rozpruwacz Orokin Prime",
+        "zh-hans": "毁灭奥罗金 Prime",
+        "zh-hant": "毀滅 Orokin Prime",
+        "ko": "프라임드 스마이트 오로킨"
+      },
+      "tags": [
+        "mod",
+        "legendary",
+        "melee"
+      ],
+      "thumb": "items/images/en/thumbs/primed_smite_corrupted.ffea0e58f1e2bb2fdb8dcc43cd51c2ad.128x128.webp",
+      "description": "x1.55 Damage to Orokin",
+      "wiki_link": "https://wiki.warframe.com/w/Primed_Smite_Orokin"
+    },
+    "equilibrium_steam_pinnacle_pack": {
+      "url_name": "equilibrium_steam_pinnacle_pack",
+      "names": {
+        "en": "Equilibrium (Steam Pinnacle Pack)",
+        "fr": "Équilibre (Steam Pinnacle Pack)",
+        "de": "Gleichgewicht (Steam Pinnacle Pack)",
+        "es": "Equilibrio (Steam Pinnacle Pack)",
+        "it": "Equilibrium (Steam Pinnacle Pack)",
+        "pt": "Equilibrium (Steam Pinnacle Pack)",
+        "ru": "Равновесие (Steam Pinnacle Pack)",
+        "uk": "Рівновага (Steam Pinnacle Pack)",
+        "pl": "Równowaga (Steam Pinnacle Pack)",
+        "zh-hans": "均衡点 (Steam Pinnacle Pack)",
+        "zh-hant": "均衡點 (Steam Pinnacle Pack)",
+        "ko": "이퀄리브리엄 (Steam 피너클 팩)"
+      },
+      "tags": [
+        "mod",
+        "warframe",
+        "uncommon"
+      ],
+      "thumb": "items/images/en/thumbs/equilibrium_(steam_pinnacle_pack).03267ab22fff155b5c4085e2718795b5.128x128.webp",
+      "description": "Health pickups give +60% Energy. Energy pickups give +60% Health.",
+      "wiki_link": "https://wiki.warframe.com/w/Equilibrium"
+    },
+    "semi_shotgun_cannonade": {
+      "url_name": "semi_shotgun_cannonade",
+      "names": {
+        "en": "Semi-Shotgun Cannonade",
+        "fr": "Canonnade Fusil À Pompe Semi-Auto",
+        "de": "Halbauto. Schrotflinten-Kanonade",
+        "es": "Cañoneo De Semiescopeta",
+        "it": "Semi-Shotgun Cannonade",
+        "pt": "Semi-Shotgun Cannonade",
+        "ru": "Канонада: Дробовик",
+        "uk": "Самозарядна Рушнична Канонада",
+        "pl": "Kanonada Strzelby",
+        "zh-hans": "半自动霰弹枪炮轰",
+        "zh-hant": "半自動霰彈槍砲轟",
+        "ko": "세미-샷건 캐노네이드"
+      },
+      "tags": [
+        "mod",
+        "uncommon",
+        "primary",
+        "shotgun"
+      ],
+      "thumb": "items/images/en/thumbs/shotgun_cannonade.167c70fe26b52a972ba464c5c9038216.128x128.webp",
+      "description": "Only compatible with Semi-Auto Trigger. Fire Rate cannot be modified. +240% Damage\n+1.5 Punch Through",
+      "wiki_link": "https://wiki.warframe.com/w/Semi-Shotgun_Cannonade"
+    },
+    "summoners_wrath": {
+      "url_name": "summoners_wrath",
+      "names": {
+        "en": "Summoner's Wrath",
+        "fr": "Colère De L'Invocateur",
+        "de": "Zorn Des Herbeirufens",
+        "es": "Ira Del Invocador",
+        "it": "Summoner's Wrath",
+        "pt": "Summoner's Wrath",
+        "ru": "Гнев Призывателя",
+        "uk": "Гнів Господарів",
+        "pl": "Gniew Przywoływacza",
+        "zh-hans": "召唤师之怒",
+        "zh-hant": "召喚師盛怒",
+        "ko": "서머너스 래스"
+      },
+      "tags": [
+        "mod",
+        "uncommon",
+        "aura"
+      ],
+      "thumb": "items/images/en/thumbs/summoner’s_wrath.2f9bd9fb757915423f011382e839992b.128x128.webp",
+      "description": "Squad receives 75% Companion and Summon Damage",
+      "wiki_link": "https://wiki.warframe.com/w/Summoner's_Wrath"
+    },
+    "zid_an_sek_eel": {
+      "url_name": "zid_an_sek_eel",
+      "names": {
+        "en": "Zid-an Sek-eel",
+        "fr": "Zid-an Sek-eel",
+        "de": "Zid-an Sek-eel",
+        "es": "Zid-an Sek-eel",
+        "it": "Zid-an Sek-eel",
+        "pt": "Zid-An Sek-Eel",
+        "ru": "Зид-ан Сек-ил",
+        "uk": "Зід-ан Сек-іл",
+        "pl": "Zid-an Sek-eel",
+        "zh-hans": "齐塞",
+        "zh-hant": "茲賽",
+        "ko": "지드-안 세크-일"
+      },
+      "tags": [
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/zid-an-sek-eel.8bc9e9fa897d0231cdeca3f6d8645e66.128x128.webp",
+      "description": "Gain invisibility for 30s after activating Tauron Strike",
+      "wiki_link": "https://wiki.warframe.com/w/Zid-An_Sek-Eel"
+    },
+    "zid_an_asheir": {
+      "url_name": "zid_an_asheir",
+      "names": {
+        "en": "Zid-an Asheir",
+        "fr": "Zid-an Asheir",
+        "de": "Zid-an Asheir",
+        "es": "Zid-an Asheir",
+        "it": "Zid-an Asheir",
+        "pt": "Zid-An Asheir",
+        "ru": "Зид-ан Ашейр",
+        "uk": "Зід-ан Ашейр",
+        "pl": "Zid-an Asheir",
+        "zh-hans": "齐阿",
+        "zh-hant": "茲艾",
+        "ko": "지드-안 아시르"
+      },
+      "tags": [
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/zid-an-asheir.7b04215b7593ec4aca12d32ef276ef3c.128x128.webp",
+      "description": "▐▒▒▒▌% Status chance for all Warframe weapons for each enemy hit with Tauron Strike, up to ▐▒▒▒▌%. Buff lasts for ▐▒▒▒▌s",
+      "wiki_link": "https://wiki.warframe.com/w/Zid-An_Asheir"
+    },
+    "zid_an_uskos": {
+      "url_name": "zid_an_uskos",
+      "names": {
+        "en": "Zid-an Uskos",
+        "fr": "Zid-an Uskos",
+        "de": "Zid-an Uskos",
+        "es": "Zid-an Uskos",
+        "it": "Zid-an Uskos",
+        "pt": "Zid-An Uskos",
+        "ru": "Зид-ан Ускос",
+        "uk": "Зід-ан Ускос",
+        "pl": "Zid-an Uskos",
+        "zh-hans": "齐乌",
+        "zh-hant": "茲烏",
+        "ko": "지드-안 우스코스"
+      },
+      "tags": [
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/zid-an-uskos.818fb0745c38781db3fa7319dcb0729a.128x128.webp",
+      "description": "On Operator and Tauron Strike Kill: ▐▒▒▒▌% Heat Damage for Secondary Weapon for duration of mission, max ▐▒▒▒▌%",
+      "wiki_link": "https://wiki.warframe.com/w/Arcane_Enhancement"
+    },
+    "zid_an_haras": {
+      "url_name": "zid_an_haras",
+      "names": {
+        "en": "Zid-an Haras",
+        "fr": "Zid-an Haras",
+        "de": "Zid-an Haras",
+        "es": "Zid-an Haras",
+        "it": "Zid-an Haras",
+        "pt": "Zid-An Haras",
+        "ru": "Зид-ан Арас",
+        "uk": "Зід-ан Гарас",
+        "pl": "Zid-an Haras",
+        "zh-hans": "齐哈",
+        "zh-hant": "茲哈",
+        "ko": "지드-안 하라스"
+      },
+      "tags": [
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/zid-an-haras.56d691fea4cbd08f4dc35ac85d8fd1fb.128x128.webp",
+      "description": "▐▒▒▒▌% Warframe Ammo Efficiency for ▐▒▒▒▌s after executing Tauron Strike",
+      "wiki_link": "https://wiki.warframe.com/w/Zid-An_Haras"
+    },
+    "zid_an_osbok": {
+      "url_name": "zid_an_osbok",
+      "names": {
+        "en": "Zid-an Osbok",
+        "fr": "Zid-an Osbok",
+        "de": "Zid-an Osbok",
+        "es": "Zid-an Osbok",
+        "it": "Zid-an Osbok",
+        "pt": "Zid-An Osbok",
+        "ru": "Зид-ан Осбок",
+        "uk": "Зід-ан Осбок",
+        "pl": "Zid-an Osbok",
+        "zh-hans": "齐奥",
+        "zh-hant": "茲歐",
+        "ko": "지드-안 오스보크"
+      },
+      "tags": [
+        "arcane_enhancement"
+      ],
+      "thumb": "items/images/en/thumbs/zid-an-osbok.bea2033c8ac9089bcff1ea005cdff694.128x128.webp",
+      "description": "Void Sling strips ▐▒▒▒▌% of enemy Overguard.\nWhen Overguard is stripped: +▐▒▒▒▌x Amp Critical Damage for ▐▒▒▒▌s.",
+      "wiki_link": "https://wiki.warframe.com/w/Zid-An_Osbok"
     }
   }
 }
