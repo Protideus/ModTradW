@@ -1,43 +1,11 @@
 {
   "metadata": {
-    "last_update": "2026-09-29T09:30:47.899126",
-    "last_check": "2026-10-02T09:25:30.886309",
+    "last_update": "2026-10-03T08:54:15.203840",
+    "last_check": "2026-10-03T08:54:15.203840",
     "count": 1605,
-    "items_added": 31,
-    "new_items": [
-      "Archgun Riven Mod (Veiled)",
-      "Bane Of Orokin",
-      "Cleanse Orokin",
-      "Companion Weapon Riven Mod (Veiled)",
-      "Enduring Bastille",
-      "Equilibrium (Steam Pinnacle Pack)",
-      "Expel Orokin",
-      "Fear Sense",
-      "Gaseous Quake",
-      "Kitgun Riven Mod (Veiled)",
-      "Melee Riven Mod (Veiled)",
-      "Negation Armor",
-      "Pistol Riven Mod (Veiled)",
-      "Primed Bane Of Orokin",
-      "Primed Cleanse Orokin",
-      "Primed Expel Orokin",
-      "Primed Smite Orokin",
-      "Rifle Riven Mod (Veiled)",
-      "Scan Aquatic Lifeforms",
-      "Semi-Shotgun Cannonade",
-      "Shotgun Riven Mod (Veiled)",
-      "Smite Orokin",
-      "Sonic Siphon",
-      "Summoner's Wrath",
-      "Teleport Rush",
-      "Zaw Riven Mod (Veiled)",
-      "Zid-an Asheir",
-      "Zid-an Haras",
-      "Zid-an Osbok",
-      "Zid-an Sek-eel",
-      "Zid-an Uskos"
-    ],
-    "items_version": "2026-09-28T16:09:39"
+    "items_added": 0,
+    "new_items": [],
+    "items_version": "2026-10-02T20:26:34"
   },
   "items": {
     "creeping_bullseye": {
